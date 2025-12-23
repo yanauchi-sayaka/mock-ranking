@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>登竜門ランキング（モック）</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">
+        <span class="brand__dot"></span>
+        <div class="brand__texts">
+          <div class="brand__title">登竜門ランキング（モック）</div>
+          <div class="brand__sub">分割版：index / styles / app / data（インストール不要）</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav__btn is-active" data-nav="ranking">ランキング</button>
+        <button class="nav__btn" data-nav="rules">ルール説明</button>
+      </nav>
+
+      <div class="search">
+        <div class="search__box">
+          <span class="search__icon"></span>
+          <input id="idSearch" class="search__input" type="text" placeholder="TikTok ID検索（例：mugen_siba）" />
+        </div>
+        <button id="idSearchBtn" class="search__btn">検索</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ===== Ranking View ===== -->
+    <section id="view-ranking" class="view">
+      <div class="hero card">
+        <h1 class="hero__title">登竜門ランキング</h1>
+
+        <div class="hero__meta">
+          <div class="chips" id="metaChips"></div>
+        </div>
+
+        <div class="rankTabs" id="rankTabs"></div>
+
+        <div class="monthToggle" role="tablist" aria-label="先月/今月 切り替え">
+          <button class="monthToggle__btn is-active" data-month="last" role="tab" aria-selected="true">先月</button>
+          <button class="monthToggle__btn" data-month="this" role="tab" aria-selected="false">今月</button>
+          <div class="monthToggle__thumb" id="monthThumb" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="grid">
+          <section class="list card">
+            <div class="list__head">
+              <div class="list__note">
+                PC：ホバーで右に詳細 / クリックで詳細ページ　
+                <span class="muted">｜</span>
+                スマホ：タップで下に詳細（シート）→「詳細ページへ」
+              </div>
+            </div>
+
+            <div id="rankList" class="rankList" aria-live="polite"></div>
+
+            <div id="emptyState" class="emptyState is-hidden">
+              データがありません（表示条件やランク設定を確認してください）
+            </div>
+          </section>
+
+          <aside class="detail card detailPanel" id="detailPanel">
+            <div class="detail__head">
+              <div class="detail__title">詳細（クイック）</div>
+              <div class="detail__hint">スクロールしてもここは残ります</div>
+            </div>
+
+            <div id="quickDetail" class="detail__body">
+              <div class="placeholder">
+                ランキングにカーソルを合わせるとここに表示されます。
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Rules View ===== -->
+    <section id="view-rules" class="view is-hidden">
+      <div class="card rules">
+        <h2 class="rules__title">概要・ルール説明（モック）</h2>
+
+        <div class="rules__section">
+          <h3>参加条件</h3>
+          <ul>
+            <li>月間ダイヤモンド数 <b>10K以上</b> を登竜門対象とする（10K未満は「登竜門対象外」表示）</li>
+            <li>pt = <b>(ダイヤモンド数 + LIVE Matchで獲得したダイヤ)</b> × <b>倍率</b></li>
+          </ul>
+        </div>
+
+        <div class="rules__section">
+          <h3>一覧画面で表示する内容</h3>
+          <ul>
+            <li>ランク内順位</li>
+            <li>TikTok ID</li>
+            <li>アイコン画像（モックはイニシャル表示）</li>
+            <li>pt</li>
+            <li>配信日数（表示スペース次第）</li>
+            <li>配信時間（表示スペース次第）</li>
+            <li>ボーナスレベル（表示スペース次第）</li>
+          </ul>
+        </div>
+
+        <div class="rules__section">
+          <h3>詳細画面（ID検索で遷移）</h3>
+          <ul>
+            <li>ランク</li>
+            <li>ランク内順位</li>
+            <li>TikTok ID</li>
+            <li>アイコン画像</li>
+            <li>pt</li>
+            <li>ダイヤモンド数</li>
+            <li>配信日数</li>
+            <li>配信時間</li>
+            <li>ボーナスレベル</li>
+            <li>次のボーナスレベルまでの配信日数・配信時間</li>
+            <li>登竜門対象外（10K未満）は「登竜門対象外」と表示</li>
+          </ul>
+        </div>
+
+        <div class="rules__section muted">
+          ※定員数・昇格/降格人数は <code>data.js</code> の <code>RANK_CONFIG</code> を編集してください。
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Detail View ===== -->
+    <section id="view-detail" class="view is-hidden">
+      <div class="card detailPage">
+        <div class="detailPage__head">
+          <button id="backBtn" class="btn btn--ghost">← 戻る</button>
+          <div class="detailPage__title">詳細</div>
+          <div class="monthToggle monthToggle--small" role="tablist" aria-label="先月/今月 切り替え（詳細）">
+            <button class="monthToggle__btn is-active" data-month="last" role="tab" aria-selected="true">先月</button>
+            <button class="monthToggle__btn" data-month="this" role="tab" aria-selected="false">今月</button>
+            <div class="monthToggle__thumb" id="detailMonthThumb" aria-hidden="true"></div>
+          </div>
+</div>
+
+        </div>
+
+        <div id="detailPageBody" class="detailPage__body"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile sheet -->
+  <div id="sheetOverlay" class="sheetOverlay is-hidden" aria-hidden="true"></div>
+  <div id="sheet" class="sheet is-hidden" role="dialog" aria-modal="true" aria-label="詳細">
+    <div class="sheet__bar"></div>
+    <div class="sheet__head">
+      <div class="sheet__title">詳細</div>
+      <button id="sheetClose" class="btn btn--ghost">閉じる</button>
+    </div>
+    <div id="sheetBody" class="sheet__body"></div>
+  </div>
+
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
