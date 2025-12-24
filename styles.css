@@ -574,10 +574,21 @@ body{
     grid-template-columns: 1fr 1fr;
     gap:10px;
   }
+  /* SP：昇格/降格ラインの文言を改行させない（「なし」「下位1名」などを横一列に） */
+  .hero__meta .chips .chip--green,
+  .hero__meta .chips .chip--red{
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 7px 10px;
+    gap: 6px;
+  }
   .hero__meta .chips .chip:nth-child(1),
   .hero__meta .chips .chip:nth-child(2){
     grid-column: 1 / -1;
   }
+
+  /* SP：詳細ページの見出し「詳細」を縦割れさせない */
+  .detailPage__title{white-space: nowrap;}
 
   .row{grid-template-columns: 44px 50px 1fr}
   .rowSide{display:none}
