@@ -6,7 +6,7 @@
   const isTouch = window.matchMedia && window.matchMedia("(hover: none)").matches;
 
   const state = {
-    view: "ranking",          // ranking | rules | detail
+    view: "ranking",          // ranking | event | detail
     rankKey: "legend",        // legend..bronze
     monthKey: "last",         // last | this
     activeId: null,           // quick detail active
@@ -171,7 +171,7 @@ function currentDetailIdFromHash(hash = location.hash){
   function setView(view){
     state.view = view;
     $("#view-ranking").classList.toggle("is-hidden", view !== "ranking");
-    $("#view-rules").classList.toggle("is-hidden", view !== "rules");
+    $("#view-event").classList.toggle("is-hidden", view !== "event");
     $("#view-detail").classList.toggle("is-hidden", view !== "detail");
 
     $$(".nav__btn").forEach(btn => {
@@ -328,9 +328,9 @@ function currentDetailIdFromHash(hash = location.hash){
 
     meta.innerHTML = `
       <div class="metaPtLine">
-        <span class="metaPtBig">${fmt(pt)}</span><span class="metaUnit">pt</span>
+        <span class="metaPtBig">${fmt(pt)}</span><span class="metaUnit">ポイント</span>
       </div>
-      <div class="metaLine2">${fmt(entry.days)}日/${fmt(entry.hours)}h/Lv${fmt(bn)}</div>
+      <div class="metaLine2">${fmt(entry.days)}日/${fmt(entry.hours)}h/レベル${fmt(bn)}</div>
 `;
     main.appendChild(id);
     main.appendChild(meta);
@@ -499,23 +499,23 @@ function currentDetailIdFromHash(hash = location.hash){
     top.appendChild(t);
 
     const table = document.createElement("div");
-    table.className = "table";    table.appendChild(tr("pt", fmt(pt)));
+    table.className = "table";    table.appendChild(tr("ポイント", fmt(pt)));
     table.appendChild(tr("ダイヤ", fmt(entry.diamonds)));
     table.appendChild(tr("LIVE Match", fmt(entry.liveMatch)));
     table.appendChild(tr("配信日数 / 配信時間", `${fmt(entry.days)}日 / ${fmt(entry.hours)}h`));
-    table.appendChild(tr("ボーナスLv", `Lv${fmt(bonusNow)}`));
+    table.appendChild(tr("ボーナスレベル", `レベル${fmt(bonusNow)}`));
 
     const prog = document.createElement("div");
     prog.className = "bonusProg";
 
     if(next.nextLevel === null){
-      prog.innerHTML = `<div class="bonusProg__title">次のボーナス</div><div class="bonusProg__text">Lv5到達済み</div>`;
+      prog.innerHTML = `<div class="bonusProg__title">次のボーナス</div><div class="bonusProg__text">レベル5到達済み</div>`;
     }else{
       const nextLv = next.nextLevel;
       const nextCfg = BONUS_LEVELS.find(x=>x.level===nextLv);
       const diamondsNote = (next.diamondsRemain>0) ? `（ダイヤ150kまで残り ${fmt(next.diamondsRemain)}）` : "";
       prog.innerHTML = `
-        <div class="bonusProg__title">次のボーナス：Lv${nextLv}（目安）</div>
+        <div class="bonusProg__title">次のボーナス：レベル${nextLv}（目安）</div>
         <div class="bonusProg__text">あと ${fmt(next.remainDays)}日 / ${fmt(next.remainHours)}h ${diamondsNote}</div>
         <div class="bonusProg__bars">
           <div class="barRow">
@@ -600,8 +600,12 @@ function currentDetailIdFromHash(hash = location.hash){
 
   function handleHash(){
     const h = location.hash || "#ranking";
+    if(h.startsWith("#event")){
+      setView("event");
+      return;
+    }
     if(h.startsWith("#rules")){
-      setView("rules");
+      setView("event");
       return;
     }
     if(h.startsWith("#detail")){
@@ -627,7 +631,19 @@ function currentDetailIdFromHash(hash = location.hash){
       btn.addEventListener("click", ()=>{
         const v = btn.dataset.nav;
         if(v==="ranking") location.hash = "#ranking";
-        if(v==="rules") location.hash = "#rules";
+        if(v==="event")   location.hash = "#event";
+      });
+    });
+
+    // 対戦表タブ
+    $$(".battle-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        $$(".battle-tab").forEach(t => t.classList.remove("is-active"));
+        tab.classList.add("is-active");
+        const time = tab.dataset.time;
+        $$(".battle-table-group").forEach(g => {
+          g.classList.toggle("is-hidden", g.dataset.time !== time);
+        });
       });
     });
 

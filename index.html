@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>登竜門ランキング（モック）</title>
+  <title>登竜門ランキング</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <div class="bg"></div>
+  <!-- <div class="bg"></div> -->
 
   <header class="topbar">
     <div class="topbar__inner">
       <div class="brand">
         <span class="brand__dot"></span>
         <div class="brand__texts">
-          <div class="brand__title">登竜門ランキング（モック）</div>
-          <div class="brand__sub">分割版：index / styles / app / data（インストール不要）</div>
+          <div class="brand__title">登竜門ランキング</div>
         </div>
       </div>
 
       <nav class="nav">
         <button class="nav__btn is-active" data-nav="ranking">ランキング</button>
-        <button class="nav__btn" data-nav="rules">ルール説明</button>
+        <button class="nav__btn" data-nav="event">イベント・ルール</button>
       </nav>
 
       <div class="search">
@@ -57,14 +59,6 @@
       <div class="content">
         <div class="grid">
           <section class="list card">
-            <div class="list__head">
-              <div class="list__note">
-                PC：ホバーで右に詳細 / クリックで詳細ページ　
-                <span class="muted">｜</span>
-                スマホ：タップで下に詳細（シート）→「詳細ページへ」
-              </div>
-            </div>
-
             <div id="rankList" class="rankList" aria-live="polite"></div>
 
             <div id="emptyState" class="emptyState is-hidden">
@@ -75,7 +69,6 @@
           <aside class="detail card detailPanel" id="detailPanel">
             <div class="detail__head">
               <div class="detail__title">詳細（クイック）</div>
-              <div class="detail__hint">スクロールしてもここは残ります</div>
             </div>
 
             <div id="quickDetail" class="detail__body">
@@ -88,52 +81,448 @@
       </div>
     </section>
 
-    <!-- ===== Rules View ===== -->
-    <section id="view-rules" class="view is-hidden">
-      <div class="card rules">
-        <h2 class="rules__title">概要・ルール説明（モック）</h2>
+    <!-- ===== Event・Rule View (統合) ===== -->
+    <section id="view-event" class="view is-hidden">
+      <div class="wrap">
+        <div class="event-container event">
+          <!-- トロフィーバナー -->
+          <div class="event__hero">
+            <svg class="event__trophy" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="trophyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#f0d48a"/>
+                  <stop offset="50%" style="stop-color:#d7b76a"/>
+                  <stop offset="100%" style="stop-color:#b8912a"/>
+                </linearGradient>
+              </defs>
+              <path d="M35,10 L85,10 L80,50 Q60,65 40,50 Z" fill="url(#trophyGrad)"/>
+              <path d="M35,15 Q15,20 18,38 Q20,50 35,48" fill="none" stroke="url(#trophyGrad)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M85,15 Q105,20 102,38 Q100,50 85,48" fill="none" stroke="url(#trophyGrad)" stroke-width="5" stroke-linecap="round"/>
+              <rect x="45" y="65" width="30" height="6" rx="3" fill="url(#trophyGrad)"/>
+              <rect x="38" y="71" width="44" height="8" rx="4" fill="url(#trophyGrad)"/>
+              <text x="60" y="38" text-anchor="middle" font-size="18" fill="#fff" opacity=".9">★</text>
+            </svg>
+            <p class="event__hero-text">イズニート 登竜門</p>
+          </div>
 
-        <div class="rules__section">
-          <h3>参加条件</h3>
-          <ul>
-            <li>月間ダイヤモンド数 <b>10K以上</b> を登竜門対象とする（10K未満は「登竜門対象外」表示）</li>
-            <li>pt = <b>(ダイヤモンド数 + LIVE Matchで獲得したダイヤ)</b> × <b>倍率</b></li>
-          </ul>
-        </div>
+          <!-- ===== イベント概要セクション ===== -->
+          <div class="event-rule-section-heading">イベント概要</div>
 
-        <div class="rules__section">
-          <h3>一覧画面で表示する内容</h3>
-          <ul>
-            <li>ランク内順位</li>
-            <li>TikTok ID</li>
-            <li>アイコン画像（モックはイニシャル表示）</li>
-            <li>pt</li>
-            <li>配信日数（表示スペース次第）</li>
-            <li>配信時間（表示スペース次第）</li>
-            <li>ボーナスレベル（表示スペース次第）</li>
-          </ul>
-        </div>
+          <div class="event-list">
 
-        <div class="rules__section">
-          <h3>詳細画面（ID検索で遷移）</h3>
-          <ul>
-            <li>ランク</li>
-            <li>ランク内順位</li>
-            <li>TikTok ID</li>
-            <li>アイコン画像</li>
-            <li>pt</li>
-            <li>ダイヤモンド数</li>
-            <li>配信日数</li>
-            <li>配信時間</li>
-            <li>ボーナスレベル</li>
-            <li>次のボーナスレベルまでの配信日数・配信時間</li>
-            <li>登竜門対象外（10K未満）は「登竜門対象外」と表示</li>
-          </ul>
-        </div>
+            <!-- 1. 期間 -->
+            <div class="event__section card-section">
+              <h3>期間</h3>
+              <p>毎月 <code>1日 9:00:00</code> 〜 翌月 <code>1日 8:59:59</code></p>
+                <p>例）<code>1/1 9:00:00</code> 〜 <code>2/1 8:59:59</code></p>
+                <p>※ランキング更新はリアルタイムではございません。1日〜2日程度遅れての更新となります。</p>
+            </div>
 
-        <div class="rules__section muted">
-          ※定員数・昇格/降格人数は <code>data.js</code> の <code>RANK_CONFIG</code> を編集してください。
-        </div>
+            <!-- 2. イベント参加対象 -->
+            <div class="event__section card-section">
+              <h3>イベント参加対象</h3>
+              <p>イズニートに所属 かつ 月 10,000ダイヤモンド以上を獲得している方</p>
+              <p>（月10,000ダイヤモンドを獲得するとブロンズランクから自動参加となります）</p>
+            </div>
+
+            <!-- 3. イベント特典 -->
+            <div class="event__section card-section">
+              <h3>イベント特典</h3>
+
+              <div class="rules__subsection">
+                <h4>ランク別特典</h4>
+                <div class="event__image-placeholder">
+                  <span>（説明画像 準備中）</span>
+                </div>
+              </div>
+
+              <div class="rules__subsection">
+                <h4>継続特典</h4>
+                <div class="event__image-placeholder">
+                  <span>（説明画像 準備中）</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.event-list -->
+
+          <!-- ===== 区切り ===== -->
+          <div class="event-rule-divider"></div>
+
+          <!-- ===== ルール概要セクション ===== -->
+          <div class="event-rule-section-heading">ルール概要</div>
+
+          <div class="rules-list">
+
+          <!-- 1. ランク構成 -->
+          <div class="rules__section card-section">
+            <h3>ランク構成</h3>
+            <img class="rules__image" src="./images/pyramid.webp" alt="ランクピラミッド">
+
+            <div class="rules__subsection">
+              <h4>各ランク定員数・昇格枠・降格枠</h4>
+              <div class="rules__table-scroll">
+                <table class="rules__table">
+                  <thead>
+                    <tr>
+                      <th>ランク帯</th>
+                      <th>定員数</th>
+                      <th class="promote-header">↑ 昇格枠</th>
+                      <th class="demote-header">↓ 降格枠</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-rank="legend">
+                      <td class="rank-cell">レジェンド</td>
+                      <td>5人</td>
+                      <td class="promote-cell neutral">-</td>
+                      <td class="demote-cell">1人</td>
+                      <td></td>
+                    </tr>
+                    <tr data-rank="diamond">
+                      <td class="rank-cell">ダイヤモンド</td>
+                      <td>15人</td>
+                      <td class="promote-cell">3人</td>
+                      <td class="demote-cell">3人</td>
+                      <td></td>
+                    </tr>
+                    <tr data-rank="platinum">
+                      <td class="rank-cell">プラチナ</td>
+                      <td>50人</td>
+                      <td class="promote-cell">10人</td>
+                      <td class="demote-cell">10人</td>
+                      <td></td>
+                    </tr>
+                    <tr data-rank="gold">
+                      <td class="rank-cell">ゴールド</td>
+                      <td>150人</td>
+                      <td class="promote-cell">10人</td>
+                      <td class="demote-cell">20人</td>
+                      <td></td>
+                    </tr>
+                    <tr data-rank="silver">
+                      <td class="rank-cell">シルバー</td>
+                      <td>250人</td>
+                      <td class="promote-cell">20人</td>
+                      <td class="demote-cell">50人</td>
+                      <td class="note-cell">下位50人が<span class="auto-demote">自動降格</span></td>
+                    </tr>
+                    <tr data-rank="bronze">
+                      <td class="rank-cell">ブロンズ</td>
+                      <td>上記ランク以外の人</td>
+                      <td class="promote-cell">50人</td>
+                      <td class="demote-cell neutral">-</td>
+                      <td class="note-cell">上位50人が<span class="auto-promote">自動昇格</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 登竜門ポイント -->
+          <div class="rules__section card-section">
+            <h3>登竜門ポイント</h3>
+            <p>1,000ダイヤモンド = 1ポイントとなります。ただし、バトルで獲得したダイヤモンドはポイントが2倍になります。</p>
+            <ul>
+              <li>バトルで獲得したダイヤモンド：<code>1,000ダイヤ = 2ポイント</code></li>
+              <li>バトル以外で獲得したダイヤモンド：<code>1,000ダイヤ = 1ポイント</code></li>
+            </ul>
+          </div>
+
+          <!-- 3. ボーナスについて -->
+          <div class="rules__section card-section">
+            <h3>ボーナスについて</h3>
+            <p>獲得したポイントにはボーナス倍率が適用されます。<strong>獲得ポイント × ボーナス倍率 = 総合ポイント</strong>となります。</p>
+
+            <div class="rules__subsection">
+              <h4>① ボーナス条件</h4>
+              <p>ボーナス倍率は、下記の表に記載されている「配信日数」と「配信時間」の両方の達成状況に応じて変動します。配信をやればやるだけボーナス倍率が良くなる仕組みです。</p>
+            </div>
+
+            <div class="rules__table-scroll">
+              <table class="rules__table">
+                <thead>
+                  <tr>
+                    <th>レベル</th>
+                    <th>有効LIVE日数</th>
+                    <th>LIVE時間</th>
+                    <th>倍率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-level="1">
+                    <td class="level-cell">レベル 1</td>
+                    <td>≥ 18 日</td>
+                    <td>≥ 40 時間</td>
+                    <td class="multiplier-cell">× 1.2</td>
+                  </tr>
+                  <tr data-level="2">
+                    <td class="level-cell">レベル 2</td>
+                    <td>≥ 20 日</td>
+                    <td>≥ 80 時間</td>
+                    <td class="multiplier-cell">× 1.4</td>
+                  </tr>
+                  <tr data-level="3">
+                    <td class="level-cell">レベル 3</td>
+                    <td>≥ 20 日</td>
+                    <td>≥ 100 時間</td>
+                    <td class="multiplier-cell">× 1.6</td>
+                  </tr>
+                  <tr data-level="4">
+                    <td class="level-cell">レベル 4</td>
+                    <td>≥ 22 日</td>
+                    <td>≥ 120 時間</td>
+                    <td class="multiplier-cell">× 1.8</td>
+                  </tr>
+                  <tr data-level="5">
+                    <td class="level-cell">レベル 5</td>
+                    <td>≥ 24 日</td>
+                    <td>≥ 140 時間</td>
+                    <td class="multiplier-cell">× 2.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="rules__subsection">
+              <p>例）</p>
+              <ul>
+                <li>配信日数：20日／配信時間：80時間 → レベル 2</li>
+                <li>配信日数：21日／配信時間：145時間 → レベル 3</li>
+                <li>配信日数：24日／配信時間：110時間 → レベル 3</li>
+              </ul>
+            </div>
+
+            <div class="rules__subsection">
+              <h4>② ボーナス倍率の適用</h4>
+            </div>
+
+            <p class="rules__formula">総ポイント ＝（バトルポイント ＋ バトル以外ポイント）× ボーナス倍率</p>
+
+            <div class="bonus-calc">
+              <div class="bonus-calc-block">
+                <div class="bonus-calc-block-label">例）入力条件</div>
+                <div class="bonus-calc-rows">
+                  <div class="bonus-calc-row">
+                    <span class="bonus-calc-key">バトル</span>
+                    <span class="bonus-calc-val">10,000 ダイヤモンド</span>
+                  </div>
+                  <div class="bonus-calc-row">
+                    <span class="bonus-calc-key">バトル以外</span>
+                    <span class="bonus-calc-val">10,000 ダイヤモンド</span>
+                  </div>
+                  <div class="bonus-calc-sep"></div>
+                  <div class="bonus-calc-row">
+                    <span class="bonus-calc-key">配信日数</span>
+                    <span class="bonus-calc-val">21 日</span>
+                  </div>
+                  <div class="bonus-calc-row">
+                    <span class="bonus-calc-key">配信時間</span>
+                    <span class="bonus-calc-val">145 時間</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bonus-calc-down">▼</div>
+
+              <div class="bonus-calc-block">
+                <div class="bonus-calc-block-label">計算ステップ</div>
+                <div class="bonus-calc-steps">
+                  <div class="bonus-calc-step">
+                    <span class="bonus-calc-step-key">バトル</span>
+                    <span class="bonus-calc-step-eq">10,000 ÷ 1,000 × 2</span>
+                    <span class="bonus-calc-step-ans">20 ポイント</span>
+                  </div>
+                  <div class="bonus-calc-step">
+                    <span class="bonus-calc-step-key">バトル以外</span>
+                    <span class="bonus-calc-step-eq">10,000 ÷ 1,000 × 1</span>
+                    <span class="bonus-calc-step-ans">10 ポイント</span>
+                  </div>
+                  <div class="bonus-calc-level">
+                    配信 21日 / 145時間 → <strong>レベル 3 ＝ 1.6 倍</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bonus-calc-down">▼</div>
+
+              <div class="bonus-calc-result">
+                <span class="bonus-calc-result-eq">（20 ＋ 10）× 1.6</span>
+                <span class="bonus-calc-result-total">48 ポイント</span>
+                <span class="bonus-calc-result-label">総合ポイント</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. ランク入替戦 -->
+          <div class="rules__section card-section">
+            <h3>ランク入替戦</h3>
+            <ul>
+              <p>不戦敗ルール：上位ランク者がバトル拒否・不参加の場合、自動降格。対戦相手は自動昇格。</p>
+              <p>※ブロンズランク上位50人とシルバーランク下位50人は入替戦を行わず、自動入替となる。</p>
+            </ul>
+
+            <!-- 昇格・降格の結果コンポーネント -->
+            <div class="battle-result">
+
+              <!-- 左: 繰り上がり対象者 -->
+              <div class="battle-result__side battle-result__side--promote">
+                <div class="battle-result__header">
+                  <span>繰り上がり対象者</span>
+                </div>
+                <div class="battle-result__outcomes">
+                  <div class="battle-result__outcome">
+                    <div class="battle-result__label">WIN <span class="battle-result__label-sub">（勝利）</span></div>
+                    <div class="battle-result__value battle-result__value--up">↑ 昇格</div>
+                  </div>
+                  <div class="battle-result__outcome">
+                    <div class="battle-result__label">LOSE <span class="battle-result__label-sub">（敗北）</span></div>
+                    <div class="battle-result__value">ランク維持</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 中央: VS -->
+              <div class="battle-result__vs-wrap">
+                <div class="battle-result__vs-line"></div>
+                <div class="battle-result__vs-badge">VS</div>
+                <div class="battle-result__vs-line"></div>
+              </div>
+
+              <!-- 右: 繰り下がり対象者 -->
+              <div class="battle-result__side battle-result__side--demote">
+                <div class="battle-result__header">
+                  <span>繰り下がり対象者</span>
+                </div>
+                <div class="battle-result__outcomes">
+                  <div class="battle-result__outcome">
+                    <div class="battle-result__label">WIN <span class="battle-result__label-sub">（勝利）</span></div>
+                    <div class="battle-result__value">ランク維持</div>
+                  </div>
+                  <div class="battle-result__outcome">
+                    <div class="battle-result__label">LOSE <span class="battle-result__label-sub">（敗北）</span></div>
+                    <div class="battle-result__value battle-result__value--down">↓ 降格</div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.battle-result -->
+          </div>
+
+          <!-- 5. 対戦時間・対戦相手 -->
+          <div class="rules__section card-section">
+            <h3>対戦時間・対戦相手</h3>
+            <p class="muted">毎月7日に以下の対戦時間・対戦相手でバトルを行いランク入れ替えをする。</p>
+
+            <!-- タブ -->
+            <div class="battle-tabs">
+              <button class="battle-tab is-active" data-time="2100">
+                <span class="battle-tab-time">21:00</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--silver">シルバー</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--gold">ゴールド</span>
+                </span>
+              </button>
+              <button class="battle-tab" data-time="2130">
+                <span class="battle-tab-time">21:30</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--gold">ゴールド</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--platinum">プラチナ</span>
+                </span>
+              </button>
+              <button class="battle-tab" data-time="2200">
+                <span class="battle-tab-time">22:00</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--platinum">プラチナ</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--diamond">ダイヤモンド</span>
+                </span>
+              </button>
+              <button class="battle-tab" data-time="2230">
+                <span class="battle-tab-time">22:30</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--diamond">ダイヤモンド</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--legend">レジェンド</span>
+                </span>
+              </button>
+            </div>
+
+            <!-- 21:00 グループ: シルバー vs ゴールド（20戦）-->
+            <div class="battle-table-group" data-time="2100">
+              <div class="battle-matchup-list">
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー1位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド100位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー2位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド99位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー3位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド98位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー4位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド97位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー5位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド96位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー6位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド95位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー7位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド94位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー8位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド93位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー9位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド92位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー10位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド91位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー11位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド90位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー12位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド89位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー13位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド88位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー14位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド87位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー15位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド86位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー16位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド85位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー17位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド84位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー18位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド83位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー19位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド82位</span></div>
+                <div class="battle-matchup-item"><span class="rank--silver">シルバー20位</span><span class="battle-matchup-vs">vs</span><span class="rank--gold">ゴールド81位</span></div>
+              </div>
+            </div>
+
+            <!-- 21:30 グループ: ゴールド vs プラチナ（10戦）-->
+            <div class="battle-table-group is-hidden" data-time="2130">
+              <div class="battle-matchup-list">
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド1位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ50位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド2位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ49位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド3位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ48位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド4位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ47位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド5位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ46位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド6位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ45位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド7位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ44位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド8位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ43位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド9位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ42位</span></div>
+                <div class="battle-matchup-item"><span class="rank--gold">ゴールド10位</span><span class="battle-matchup-vs">vs</span><span class="rank--platinum">プラチナ41位</span></div>
+              </div>
+            </div>
+
+            <!-- 22:00 グループ: プラチナ vs ダイヤモンド（3戦）-->
+            <div class="battle-table-group is-hidden" data-time="2200">
+              <div class="battle-matchup-list">
+                <div class="battle-matchup-item"><span class="rank--platinum">プラチナ1位</span><span class="battle-matchup-vs">vs</span><span class="rank--diamond">ダイヤモンド15位</span></div>
+                <div class="battle-matchup-item"><span class="rank--platinum">プラチナ2位</span><span class="battle-matchup-vs">vs</span><span class="rank--diamond">ダイヤモンド14位</span></div>
+                <div class="battle-matchup-item"><span class="rank--platinum">プラチナ3位</span><span class="battle-matchup-vs">vs</span><span class="rank--diamond">ダイヤモンド13位</span></div>
+              </div>
+            </div>
+
+            <!-- 22:30 グループ: ダイヤモンド vs レジェンド（1戦）-->
+            <div class="battle-table-group is-hidden" data-time="2230">
+              <div class="battle-matchup-list">
+                <div class="battle-matchup-item"><span class="rank--diamond">ダイヤモンド1位</span><span class="battle-matchup-vs">vs</span><span class="rank--legend">レジェンド5位</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. 注意事項 -->
+          <div class="rules__section card-section">
+            <h3>注意事項</h3>
+            <ul class="muted">
+              <p>TikTokIDで検索していただくと、詳細ページをご覧いただけます。</p>
+              <p>※ブロンズランク101位以下の方は詳細ページからのみ閲覧可能となります。</p>
+            </ul>
+          </div>
+
+          </div><!-- /.rules-list -->
+
+        </div><!-- /.event-container -->
       </div>
     </section>
 
