@@ -2104,3 +2104,17 @@ body{
     inset 0 0 0 1px rgba(243,225,176,.10),
     0 0 14px rgba(216,184,108,.18);
 }
+
+/* スマホの「詳細ページへ」ボタンも金系に統一 */
+@media (max-width: 520px){
+  .sheet .btn--primary,
+  .sheetActions .btn--primary,
+  .detailPanel .btn--primary,
+  .detailPage__actions .btn--primary,
+  .detail-actions .btn--primary{
+    background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+    color: #111111 !important;
+    box-shadow: 0 8px 20px rgba(216,184,108,.24) !important;
+    border: 0 !important;
+  }
+}
