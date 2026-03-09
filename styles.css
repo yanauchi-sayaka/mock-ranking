@@ -1954,3 +1954,109 @@ body{
     justify-content: center !important;
   }
 }
+
+/* ===== ネオン色調整（赤・緑はそのまま） ===== */
+
+/* 表示・定員だけ金系に */
+#view-ranking .chip,
+#view-ranking .chip--gold,
+#view-ranking .chip--pink{
+  border-color: rgba(217,191,158,.42) !important;
+  box-shadow: inset 0 0 0 1px rgba(217,191,158,.10);
+}
+
+/* 降格・昇格ラインは元色維持 */
+#view-ranking .chip--green,
+#view-ranking .chip--red{
+  box-shadow: none !important;
+}
+
+/* ランクタブ */
+#view-ranking .rankTabs__btn{
+  border-color: rgba(217,191,158,.22) !important;
+}
+
+#view-ranking .rankTabs__btn.is-active{
+  border-color: rgba(217,191,158,.72) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(217,191,158,.14),
+    0 0 12px rgba(217,191,158,.16);
+}
+
+/* 先月/今月の紫部分だけ金系に */
+#view-ranking .monthToggle__thumb{
+  background: linear-gradient(90deg, #f3e1b0, #d8b86c 60%, #b48a3c) !important;
+  box-shadow: 0 8px 24px rgba(216,184,108,.28) !important;
+}
+
+/* 検索ボタン */
+#view-ranking .search__btn{
+  background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+  color: #111111 !important;
+  box-shadow: 0 6px 18px rgba(216,184,108,.24);
+}
+
+/* 詳細ページへボタンの紫だけ金系に */
+#view-ranking .btn--primary{
+  background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+  color: #111111 !important;
+  box-shadow: 0 8px 20px rgba(216,184,108,.24);
+}
+
+/* ランクタブ：選択中をもっとわかりやすく */
+#view-ranking .rankTabs__btn.is-active{
+  border: 2px solid #d8b86c !important;
+  background: rgba(216,184,108,.10) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(243,225,176,.10),
+    0 0 14px rgba(216,184,108,.18);
+}
+
+/* 非選択は今まで通り細め */
+#view-ranking .rankTabs__btn{
+  border-width: 1px;
+}
+
+/* 先月 / 今月：選択中だけ文字を黒にする */
+#view-ranking .monthToggle__btn.is-active{
+  color: #111111 !important;
+  font-weight: 700;
+}
+
+/* 非選択は白のまま */
+#view-ranking .monthToggle__btn:not(.is-active){
+  color: #f3efe8 !important;
+}
+
+/* 詳細ページの先月/今月タブだけ金系にする */
+#view-detail .monthToggle__thumb{
+  background: linear-gradient(90deg, #f3e1b0, #d8b86c 60%, #b48a3c) !important;
+  box-shadow: 0 8px 24px rgba(216,184,108,.28) !important;
+}
+
+/* 選択中の文字は黒 */
+#view-detail .monthToggle__btn.is-active{
+  color: #111111 !important;
+  font-weight: 700;
+}
+
+/* 非選択は白 */
+#view-detail .monthToggle__btn:not(.is-active){
+  color: #f3efe8 !important;
+}
+
+/* 上部ナビタブ：選択中を目立たせる */
+.topbar .nav__btn.is-active{
+  border: 2px solid #d8b86c !important;
+  background: rgba(216,184,108,.10) !important;
+  color: #fff7e8 !important;
+  font-weight: 700;
+  box-shadow:
+    inset 0 0 0 1px rgba(243,225,176,.10),
+    0 0 14px rgba(216,184,108,.18);
+}
+
+/* 非選択は細いまま */
+.topbar .nav__btn{
+  border-width: 1px;
+}
