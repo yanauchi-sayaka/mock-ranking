@@ -1892,7 +1892,7 @@ body{
 
 /* モバイル対応（520px以下） */
 @media (max-width: 520px) {
-  /* 外側の余白を消す */
+  /* 外側 */
   .event-container {
     width: 100%;
     max-width: none;
@@ -1900,12 +1900,11 @@ body{
     margin: 0 !important;
   }
 
-  /* カードを横いっぱいに広げる */
+  /* カードを横に広げる */
   .event-container .card-section {
-    width: calc(100vw - 12px) !important;
+    width: 100% !important;
     max-width: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 0 !important;
     padding: 14px 16px;
     box-sizing: border-box;
   }
