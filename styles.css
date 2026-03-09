@@ -1437,8 +1437,8 @@ body{
 
 .bonus-calc-result-eq { font-size: 13px; color: var(--muted); }
 .bonus-calc-result-total {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 100;
   color: var(--gold);
   font-family: "Dela Gothic One", sans-serif;
   letter-spacing: .04em;
