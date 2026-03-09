@@ -37,15 +37,6 @@ body{
   font-family: "Dela Gothic One", "M PLUS Rounded 1c", sans-serif;
 }
 
-/* ページタイトル ゴールドグラデーション */
-.event__title,
-.rules__title {
-  background: linear-gradient(135deg, #f0d48a 0%, var(--gold) 40%, #b8912a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* SVGセクションアイコン */
 .section-icon {
   width: 20px;
@@ -85,17 +76,7 @@ body{
   margin: 0;
 }
 
-/*
-.bg{
-  position:fixed; inset:0;
-  background:
-    radial-gradient(900px 520px at 12% 14%, rgba(70,150,255,.22), transparent 65%),
-    radial-gradient(840px 520px at 86% 32%, rgba(222,32,170,.26), transparent 62%),
-    radial-gradient(600px 400px at 66% 86%, rgba(0,255,200,.08), transparent 70%);
-  pointer-events:none;
-  filter: blur(0px);
-  opacity: 1;
-}*/
+
 
 .wrap{
   width:min(1200px, calc(100% - 32px));
@@ -129,27 +110,7 @@ body{
     0 0 40px rgba(138, 27, 189, .05);
 }
 
-/* グラデーションボーダー (擬似要素マスク技法) */
-/* 
-.card-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(215, 183, 106, .55),
-    rgba(138, 27, 189, .35),
-    rgba(212, 28, 143, .25)
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-} */
+
 
 
 .muted{color:var(--muted)}
@@ -396,10 +357,7 @@ body{
   word-break: break-all;
   line-height: 1.18;
   max-height: calc(1.18em * 2);
-
-  word-break: break-all;
 }
-
 
 .metaPtLine{
   display:flex;
@@ -475,10 +433,6 @@ body{
 .kv--pt b{
   font-size:16px;
 }
-.kv b{color:var(--txt)}
-.kv{display:inline-flex; gap:6px; align-items:center}
-.kv .dot{opacity:.75}
-
 /* right side small */
 .rowSide{
   display:flex;
@@ -1775,11 +1729,2072 @@ body{
   width: 0%;
   background: rgba(255,255,255,.70);
 }
-.kv__unit{
-  margin-left: 4px;
-  font-size: 12px;
-  color: rgba(255,255,255,.70);
+@media (max-width: 520px){
+  .barRow{ grid-template-columns: 36px 1fr; }
+  .barRow__val{ grid-column: 1 / -1; justify-self: end; }
+}
+
+/* candidate frames */
+.row.row--promote{
+  border:none;
+  outline:5px solid rgba(40,209,124,.95);
+  outline-offset:-5px;
+}
+.row.row--demote{
+  border:none;
+  outline:6px solid rgba(255,59,106,.95);
+  outline-offset:-6px;
+}
+/* active highlight should win */
+.row.is-active{
+  border-color: rgba(245, 212, 120, .95) !important;
+  box-shadow: 0 0 0 1px rgba(245, 212, 120, .35) inset, 0 0 0 3px rgba(245, 212, 120, .08);
+}
+
+/* compact month toggle for detail page */
+.monthToggle--small{
+  width: 220px;
+  height: 36px;
+  padding: 4px;
+}
+.monthToggle--small .monthToggle__btn{
+  font-size: 13px;
+}
+.detailPage__head .monthToggle--small{
+  margin-left: auto;
+}
+
+/* quick/detail actions */
+.detailActions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:12px;
+}
+
+@media (max-width: 860px){
+  .detailPanel__card{margin-top:10px;}
+}
+
+/* ===== イベント・ルール統合ページ専用スタイル ===== */
+
+/* 全体背景 */
+#view-event {
+  background: #000000;
+  min-height: 100vh;
+}
+
+/* コンテナ基本文字色 */
+.event-container {
+  color: #a09d94;
+}
+
+.event-container p,
+.event-container li {
+  color: #a09d94;
+}
+
+/* コンテナ内 muted は若干明るめに */
+.event-container .muted {
+  color: #7a7772;
+}
+
+/* カード本体背景色 */
+.event-container .card-section {
+  background: #332b24;
+}
+
+/* カード見出し部（タイトルエリア）*/
+.event-container .card-section h3 {
+  background:
+    linear-gradient(135deg, #d9bf9e 0%, #d9bf9e 100%),
+    #101010;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  -webkit-text-fill-color: transparent;
+}
+
+/* カード見出し左縦線を削除 */
+.event-container .card-section h3::before {
+  content: none;
+}
+
+/* 小見出し（h4）文字色 */
+.event-container .rules__subsection h4 {
+  color: #d9bf9e;
+}
+
+.event-container .rules__subsection h4::before {
+  background: linear-gradient(to right, transparent, rgba(251, 221, 180, .35));
+}
+
+.event-container .rules__subsection h4::after {
+  background: linear-gradient(to left, transparent, rgba(251, 221, 180, .35));
+}
+
+/* セクション見出し（イベント概要 / ルール概要）*/
+.event-rule-section-heading {
+  margin: 20px 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: center;
+  color: #d9bf9e;
+}
+
+/* イベント部とルール部の区切り線 */
+.event-rule-divider {
+  height: 1px;
+  background: rgba(251, 221, 180, .15);
+  margin: 14px 0;
+}
+
+/* 非ゴールド要素のgold文字色を#d9bf9eに統一（event-containerスコープ） */
+.event-container .bonus-calc-block-label { color: #d9bf9e; }
+.event-container .bonus-calc-down { color: #d9bf9e; }
+.event-container .bonus-calc-step-ans { color: #d9bf9e; }
+.event-container .bonus-calc-result-total { color: #d9bf9e; }
+.event-container .rules__table .multiplier-cell { color: #d9bf9e; }
+.event-container .battle-result__vs-badge { color: #d9bf9e; }
+
+/* 対戦リスト: rules__tableと同スタイルに揃える */
+.event-container .battle-matchup-list {
+  gap: 0;
+  border: 1px solid var(--line2);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: rgba(15, 25, 40, 0.6);
+  margin: 8px 0;
+}
+
+.event-container .battle-matchup-item {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  background: transparent;
+  padding: 14px 16px;
+}
+
+.event-container .battle-matchup-item:last-child {
+  border-bottom: none;
+}
+
+.event-container .battle-matchup-item:nth-child(even) {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* 画像プレースホルダー */
+.event__image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  border-radius: 12px;
+  border: 1px dashed rgba(251, 221, 180, .3);
+  background: rgba(16, 16, 16, 0.5);
+  color: #a09d94;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+/* モバイル対応（520px以下） */
+@media (max-width: 520px) {
+  .event-container .card-section {
+    width: calc(100% + 32px) !important;
+    max-width: none !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .event-container .card-section h3 {
+    margin: -14px -16px 12px -16px !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+
+  .event-rule-section-heading {
+    font-size: 20px !important;
+  }
+
+  .event__image-placeholder {
+    min-height: 80px !important;
+  }
+
+  /* まず、通常本文は左揃え */
+  .event-container .card-section p,
+  .event-container .card-section li {
+    text-align: left !important;
+  }
+
+  .event-container .card-section ul {
+    align-items: stretch !important;
+  }
+
+  /* ただし、中央揃えにしたい特殊ブロックだけ戻す */
+  .event-container .rules__formula,
+  .event-container .rules__formula *,
+  .event-container .rules__example,
+  .event-container .rules__example *,
+  .event-container .bonus-calc,
+  .event-container .bonus-calc *,
+  .event-container .battle-result,
+  .event-container .battle-result * {
+    text-align: center !important;
+  }
+
+  .event-container .bonus-calc-row,
+  .event-container .bonus-calc-step {
+    justify-content: center !important;
+  }
+
+  .event-container .bonus-calc-level,
+  .event-container .bonus-calc-level p {
+    text-align: center !important;
+  }
+
+  /* 対戦相手一覧も中央 */
+  .event-container .battle-matchup-item {
+    padding: 10px 12px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ===== ランキング用の追加調整（整理版） ===== */
+
+/* 表示・定員だけ金系に */
+#view-ranking .chip,
+#view-ranking .chip--gold,
+#view-ranking .chip--pink{
+  border-color: rgba(217,191,158,.42) !important;
+  box-shadow: inset 0 0 0 1px rgba(217,191,158,.10);
+}
+
+/* 昇格・降格ラインは元色維持 */
+#view-ranking .chip--green,
+#view-ranking .chip--red{
+  box-shadow: none !important;
+}
+
+/* ランクタブ */
+#view-ranking .rankTabs__btn{
+  border-color: rgba(217,191,158,.22) !important;
+  border-width: 1px;
+}
+
+#view-ranking .rankTabs__btn.is-active{
+  border: 2px solid #d8b86c !important;
+  background: rgba(216,184,108,.10) !important;
+  color: #fff7e8 !important;
   font-weight: 700;
+  box-shadow:
+    inset 0 0 0 1px rgba(243,225,176,.10),
+    0 0 14px rgba(216,184,108,.18);
+}
+
+/* 一覧ページの先月/今月 */
+#view-ranking .monthToggle__thumb{
+  background: linear-gradient(90deg, #f3e1b0, #d8b86c 60%, #b48a3c) !important;
+  box-shadow: 0 8px 24px rgba(216,184,108,.28) !important;
+}
+
+#view-ranking .monthToggle__btn.is-active{
+  color: #111111 !important;
+  font-weight: 700;
+}
+
+#view-ranking .monthToggle__btn:not(.is-active){
+  color: #f3efe8 !important;
+}
+
+/* 詳細ページの先月/今月 */
+#view-detail .monthToggle__thumb{
+  background: linear-gradient(90deg, #f3e1b0, #d8b86c 60%, #b48a3c) !important;
+  box-shadow: 0 8px 24px rgba(216,184,108,.28) !important;
+}
+
+#view-detail .monthToggle__btn.is-active{
+  color: #111111 !important;
+  font-weight: 700;
+}
+
+#view-detail .monthToggle__btn:not(.is-active){
+  color: #f3efe8 !important;
+}
+
+/* 検索ボタン */
+#view-ranking .search__btn{
+  background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+  color: #111111 !important;
+  box-shadow: 0 6px 18px rgba(216,184,108,.24);
+}
+
+/* 詳細ページへボタン */
+#view-ranking .btn--primary{
+  background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+  color: #111111 !important;
+  box-shadow: 0 8px 20px rgba(216,184,108,.24);
+}
+
+/* 上部ナビタブ */
+.topbar .nav__btn{
+  border-width: 1px;
+}
+
+.topbar .nav__btn.is-active{
+  border: 2px solid #d8b86c !important;
+  background: rgba(216,184,108,.10) !important;
+  color: #fff7e8 !important;
+  font-weight: 700;
+  box-shadow:
+    inset 0 0 0 1px rgba(243,225,176,.10),
+    0 0 14px rgba(216,184,108,.18);
+}
+
+/* スマホの「詳細ページへ」ボタンも金系に統一 */
+@media (max-width: 520px){
+  .sheet .btn--primary,
+  .sheetActions .btn--primary,
+  .detailPanel .btn--primary,
+  .detailPage__actions .btn--primary,
+  .detail-actions .btn--primary{
+    background: linear-gradient(180deg, #f3e1b0, #d8b86c) !important;
+    color: #111111 !important;
+    box-shadow: 0 8px 20px rgba(216,184,108,.24) !important;
+    border: 0 !important;
+  }
+}:root{
+  --bg0:#000000;
+  --bg1:#000000;
+  --card:#0b1327cc;
+  --card2:#0a1022e6;
+  --line:#ffffff12;
+  --line2:#ffffff18;
+  --txt:#e9eefc;
+  --muted:#b7c0df;
+  --accent:#d41c8f;
+  --accent2:#8a1bbd;
+  --gold:#d7b76a;
+  --green:#28d17c;
+  --red:#ff3b6a;
+  --shadow: 0 22px 60px rgba(0,0,0,.55);
+  --r:18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--txt);
+  background:linear-gradient(180deg,var(--bg0),var(--bg1));
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+/* イベント・ルールページのみカスタムフォントを適用 */
+.event,
+.rules {
+  font-family: "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* タイトル要素に Dela Gothic One を適用（イベント・ルールページのみ） */
+.event__title,
+.rules__title {
+  font-family: "Dela Gothic One", "M PLUS Rounded 1c", sans-serif;
+}
+
+/* SVGセクションアイコン */
+.section-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(215, 183, 106, .4));
+}
+
+/* SVGアイコンを使用するため ::before 金バーを無効化 */
+.event h3::before,
+.rules h3::before {
+  content: none;
+}
+
+/* イベントページ トロフィーヒーロー */
+.event__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0 24px;
+}
+
+.event__trophy {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(215,183,106,.4));
+}
+
+.event__hero-text {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 13px;
+  letter-spacing: .15em;
+  color: var(--gold);
+  text-align: center;
+  margin: 0;
+}
+
+
+
+.wrap{
+  width:min(1200px, calc(100% - 32px));
+  margin: 24px auto 80px;
+  position:relative;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* ===== セクションカード (TikTok風グラデーションボーダー) ===== */
+.card-section {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(215, 183, 106, .06) 0%,
+    rgba(138, 27, 189, .04) 50%,
+    rgba(7, 10, 18, .8) 100%
+  );
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, .5),
+    0 0 24px rgba(215, 183, 106, .05),
+    0 0 40px rgba(138, 27, 189, .05);
+}
+
+
+
+
+.muted{color:var(--muted)}
+.is-hidden{display:none !important}
+
+/* ===== Topbar ===== */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background: linear-gradient(180deg, rgba(5,8,16,.92), rgba(5,8,16,.62));
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+}
+.topbar__inner{
+  width:min(1200px, calc(100% - 32px));
+  margin:0 auto;
+  padding:14px 0;
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.brand{display:flex; gap:10px; align-items:center; min-width:260px}
+.brand__dot{
+  width:10px; height:10px; border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, #ffe6a7, #c08a1a);
+  box-shadow: 0 0 0 5px rgba(215,183,106,.12);
+}
+.brand__title{font-weight:800; letter-spacing:.02em}
+
+.nav{display:flex; gap:10px}
+.nav__btn{
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.16);
+  color:var(--txt);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.nav__btn.is-active{
+  border-color: rgba(215,183,106,.55);
+  box-shadow: inset 0 0 0 1px rgba(215,183,106,.25);
+}
+
+/* ===== Search ===== */
+.search{margin-left:auto; display:flex; gap:10px; align-items:center}
+.search__box{
+  display:flex; align-items:center; gap:10px;
+  background: rgba(0,0,0,.18);
+  border:1px solid var(--line2);
+  border-radius:999px;
+  padding:10px 14px;
+  min-width: 360px;
+}
+.search__icon{width:16px;height:16px;display:inline-block;opacity:.7;}
+.search__input{
+  width:100%;
+  border:0; outline:0;
+  background:transparent;
+  color:var(--txt);
+  font-size:14px;
+}
+.search__btn{
+  border:0;
+  background: radial-gradient(circle at 30% 30%, #ffe6a7, #d7b76a);
+  color:#1b1b1b;
+  font-weight:800;
+  padding:10px 16px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+/* ===== Hero ===== */
+.hero{padding:22px 22px 18px}
+.hero__title{margin:0 0 12px; font-size:34px; letter-spacing:.02em}
+.hero__meta{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
+
+.chips{display:flex; gap:10px; flex-wrap:wrap}
+.chip{
+  display:inline-flex; gap:8px; align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.14);
+  font-size:13px;
+  color:var(--muted);
+}
+.chip b{color:var(--txt)}
+.chip--green{border-color: rgba(40,209,124,.45); box-shadow: inset 0 0 0 1px rgba(40,209,124,.18)}
+.chip--red{border-color: rgba(255,59,106,.5); box-shadow: inset 0 0 0 1px rgba(255,59,106,.18)}
+.chip--gold{border-color: rgba(215,183,106,.52); box-shadow: inset 0 0 0 1px rgba(215,183,106,.18)}
+.chip--pink{border-color: rgba(212,28,143,.55); box-shadow: inset 0 0 0 1px rgba(212,28,143,.20)}
+
+/* Rank tabs */
+.rankTabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.rankTabs__btn{
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.14);
+  color:var(--txt);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.rankTabs__btn.is-active{
+  border-color: rgba(215,183,106,.55);
+  box-shadow: inset 0 0 0 1px rgba(215,183,106,.25);
+}
+
+/* Month toggle (wide bar like your image) */
+.monthToggle{
+  position:relative;
+  border-radius:999px;
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.16);
+  overflow:hidden;
+  height:52px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.monthToggle__btn{
+  border:0;
+  background:transparent;
+  color:var(--txt);
+  cursor:pointer;
+  font-size:16px;
+  font-weight:800;
+  z-index:2;
+}
+.monthToggle__thumb{
+  position:absolute;
+  top:0; bottom:0;
+  width:50%;
+  left:0;
+  background: linear-gradient(90deg, #d41c8f, #8a1bbd);
+  border-radius:999px;
+  transform: translateX(0%);
+  transition: transform .22s ease;
+  z-index:1;
+  box-shadow: 0 16px 40px rgba(212,28,143,.18);
+}
+
+/* ===== Main grid ===== */
+.content{margin-top:18px}
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:18px;
+  align-items:start;
+}
+.list{padding:16px}
+.rankList{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  padding-top:10px;
+}
+.emptyState{
+  margin-top:12px;
+  padding:14px;
+  border:1px dashed var(--line2);
+  border-radius:14px;
+  color:var(--muted);
+}
+
+/* separators */
+.sep{
+  grid-column:1 / -1;
+  height:0;
+  border-top:0;
+  margin:4px 0 2px;
+}
+.sep--promote{
+  border-top: 4px solid rgba(40,209,124,.95);
+  box-shadow: 0 0 0 4px rgba(40,209,124,.10);
+  border-radius:6px;
+}
+.sep--demote{
+  border-top: 4px solid rgba(255,59,106,.95);
+  box-shadow: 0 0 0 4px rgba(255,59,106,.10);
+  border-radius:6px;
+}
+
+/* ===== Row card ===== */
+.row{
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.14);
+  border-radius:16px;
+  padding:12px 12px;
+  display:grid;
+  grid-template-columns: 44px 52px 1fr auto;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  position:relative;
+}
+.row:hover{border-color: rgba(255,255,255,.24)}
+.row.is-active{
+  border-color: rgba(215,183,106,.6);
+  box-shadow: inset 0 0 0 1px rgba(215,183,106,.22);
+}
+
+.row[data-rankpos="1"]{
+  grid-column: 1 / -1; /* 1位だけ横幅2列（項目は同じ） */
+}
+
+/* rank badge */
+.rankBadge{
+  width:44px; height:44px;
+  border-radius:14px;
+  border:1px solid var(--line2);
+  background: rgba(255,255,255,.03);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+}
+
+/* avatar */
+.avatar{
+  width:52px; height:52px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,.12);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,.06));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900;
+  letter-spacing:.02em;
+  overflow:hidden;
+}
+.avatar img{width:100%; height:100%; object-fit:cover; display:block}
+
+/* main text */
+.rowMain{min-width:0}
+.rowMain__id{
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: .2px;
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  line-height: 1.18;
+  max-height: calc(1.18em * 2);
+}
+
+.metaPtLine{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-top:6px;
+}
+.metaPtBig{
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+.metaUnit{
+  font-size: 12px;
+  opacity: .75;
+  font-weight: 700;
+}
+.metaLine2{
+  margin-top: 6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  opacity: .92;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.metaSep{
+  opacity: .45;
+}
+.rowMain__meta{
+  margin-top: 6px;
+  display: block;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+
+.kv{
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line2);
+  background: rgba(255,255,255,.04);
+  line-height:1;
+  font-variant-numeric: tabular-nums;
+}
+.kv__label{
+  font-size:11px;
+  letter-spacing:.02em;
+  color: rgba(183,192,223,.85);
+  font-weight:800;
+}
+.kv b{
+  font-size:14px;
+  font-weight:950;
+  color: var(--txt);
+}
+.kv__unit{
+  font-size:11px;
+  color: rgba(183,192,223,.9);
+  font-weight:800;
+}
+.kv--pt{
+  padding:8px 12px;
+  background: rgba(215,183,106,.10);
+  border-color: rgba(215,183,106,.40);
+}
+.kv--pt b{
+  font-size:16px;
+}
+/* right side small */
+.rowSide{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:flex-end;
+  font-size:12px;
+  color:var(--muted);
+}
+.badges{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
+.badge{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.12);
+  font-weight:800;
+}
+.badge--green{border-color: rgba(40,209,124,.52); color: #c9ffdf}
+.badge--red{border-color: rgba(255,59,106,.52); color: #ffd0da}
+.badge--warn{border-color: rgba(255,196,0,.40); color:#ffe6a7}
+
+.row__tiny{
+  font-size:11px;
+  color: rgba(183,192,223,.85);
+}
+
+/* ===== Detail side ===== */
+.detailPanel{
+  padding:16px;
+  position:sticky;
+  top:92px; /* topbar height */
+}
+.detail__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+  margin-bottom:12px;
+}
+.detail__title{font-weight:900; font-size:16px}
+
+.placeholder{
+  padding:14px;
+  border:1px dashed var(--line2);
+  border-radius:14px;
+  color:var(--muted);
+}
+
+/* detail card content */
+.detailCard{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.detailTop{
+  display:flex; gap:12px; align-items:center;
+}
+.detailTop__id{font-size:18px; font-weight:900}
+.detailTop__sub{font-size:12px; color:var(--muted); margin-top:2px}
+.table{
+  width:100%;
+  border:1px solid var(--line2);
+  border-radius:14px;
+  overflow:hidden;
+}
+.tr{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:10px;
+  padding:10px 12px;
+  border-top:1px solid var(--line);
+  background: rgba(0,0,0,.10);
+}
+.tr:first-child{border-top:0}
+.tdLabel{color:var(--muted); font-size:12.5px}
+.tdVal{font-weight:900}
+.detailActions{display:flex; gap:10px; justify-content:flex-end}
+
+/* buttons */
+.btn{
+  border:1px solid var(--line2);
+  background: rgba(0,0,0,.16);
+  color:var(--txt);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+}
+.btn--ghost{
+  background:transparent;
+}
+.btn--primary{
+  border:0;
+  background: linear-gradient(90deg, #d41c8f, #8a1bbd);
+}
+
+/* ===== Detail page ===== */
+.detailPage{padding:16px}
+.detailPage__head{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:12px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+}
+.detailPage__title{font-weight:900; font-size:18px}
+.detailPage__body{padding-top:8px}
+
+/* back button: keep "← 戻る" on one line (SPで縦割れしない) */
+#backBtn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+
+/* ===== Event ===== */
+.event-container { width: 100%; }
+
+.event__title{
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: center;
+  background: linear-gradient(135deg, #f0d48a 0%, var(--gold) 40%, #b8912a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 見出し: 左ゴールドライン＋テキスト */
+.event h3{
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--txt);
+}
+.event h3::before{
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* 本文テキスト */
+.event p{
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 8px 0 0;
+  color: var(--txt);
+}
+.event p:first-child{ margin-top: 0; }
+
+/* リスト */
+.event ul{margin: 8px 0 0; list-style: none; padding-left: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; line-height: 1.75}
+.event li{font-size: 14px; color: var(--txt); display: flex; align-items: flex-start; gap: 2px; text-align: left;}
+.event li::before{content: '・'; flex-shrink: 0; opacity: .7;}
+.event ul.muted li{ color: var(--muted); font-size: 13px }
+
+/* 強調 */
+.event strong{ font-weight: 800; color: var(--txt) }
+
+/* 中央揃え */
+.event__title { text-align: center; }
+.event h3 { justify-content: center; }
+.event p,
+.event li { text-align: center; }
+
+/* ルール説明リンクボタン */
+.event__rules-link {
+  display: block;
+  padding: 14px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.event__rules-link:hover {
+  background: rgba(215,183,106,.1);
+}
+
+.event__link-section {
+  margin-top: 14px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+/* ===== Rules ===== */
+.rules-container { width: 100%; }
+
+.rules__title{
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: center;
+  background: linear-gradient(135deg, #f0d48a 0%, var(--gold) 40%, #b8912a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 見出し: 左ゴールドライン＋テキスト */
+.rules h3{
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--txt);
+}
+.rules h3::before{
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* 本文テキスト */
+.rules p{
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 8px 0 0;
+  color: var(--txt);
+}
+.rules p:first-child{ margin-top: 0; }
+
+/* リスト */
+.rules ul{margin: 8px 0 0; list-style: none; padding-left: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; line-height: 1.75}
+.rules li{font-size: 14px; color: var(--txt); display: flex; align-items: flex-start; gap: 2px; text-align: left;}
+.rules li::before{content: '・'; flex-shrink: 0; opacity: .7;}
+.rules ul.muted li{ color: var(--muted); font-size: 13px }
+
+/* 強調 */
+.rules strong{ font-weight: 800; color: var(--txt) }
+
+/* 中央揃え（テーブル・rules__example は除く） */
+.rules__title { text-align: center; }
+.rules h3 { justify-content: center; }
+.rules p { text-align: center; }
+.rules__example p { text-align: left; }
+
+/* カードセクション見出しエリア (event/rules h3 より後に定義してカスケードで優先) */
+.card-section h3 {
+  font-size: 17px;
+  /* カードのpadding(20px)を打ち消してエッジまで拡張 */
+  margin: -20px -20px 16px -20px;
+  padding: 14px 20px;
+  border-radius: 14px 14px 0 0;
+  border-bottom: 1px solid rgba(215, 183, 106, .2);
+  /* 2レイヤー背景: [1]テキストグラデーション [2]エリア背景色 */
+  background:
+    linear-gradient(135deg, #f0d48a 0%, var(--gold) 50%, #c9a84c 100%),
+    linear-gradient(rgba(215, 183, 106, .07), rgba(215, 183, 106, .07));
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  -webkit-text-fill-color: transparent;
+}
+
+/* インラインコード */
+.rules code{
+  font-size: .9em;
+  font-variant-numeric: tabular-nums;
+  color: var(--txt);
+  letter-spacing: .01em;
+}
+
+/* Rules - 画像 */
+.rules__image {
+  display: block;
+  max-width: 360px;
+  height: auto;
+  margin: 14px auto;
+  border-radius: var(--r);
+  border: 1px solid var(--line2);
+}
+
+/* Rules - サブセクション */
+.rules__subsection {
+  margin-top: 20px;
+  padding-top: 16px;
+}
+
+.rules__subsection h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .03em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+.rules__subsection h4::before,
+.rules__subsection h4::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  min-width: 0;
+}
+.rules__subsection h4::before {
+  background: linear-gradient(to right, transparent, rgba(215, 183, 106, .35));
+}
+.rules__subsection h4::after {
+  background: linear-gradient(to left, transparent, rgba(215, 183, 106, .35));
+}
+
+/* ランクカラー */
+.rank--legend   { color: #c084fc; font-weight: 700; }
+.rank--diamond  { color: #38bdf8; font-weight: 700; }
+.rank--platinum { color: #94a3b8; font-weight: 700; }
+.rank--gold     { color: var(--gold); font-weight: 700; }
+.rank--silver   { color: #8fb0cc; font-weight: 700; }
+
+/* ランクチップ（タブ内の小バッジ） */
+.rank-chip { font-size: 8px; font-weight: 800; padding: 1px 4px; border-radius: 4px; letter-spacing: .01em; white-space: nowrap; }
+.rank-chip--legend   { background: rgba(192,132,252,.18); color: #c084fc; }
+.rank-chip--diamond  { background: rgba(56,189,248,.18);  color: #38bdf8; }
+.rank-chip--platinum { background: rgba(148,163,184,.18); color: #94a3b8; }
+.rank-chip--gold     { background: rgba(215,183,106,.18); color: var(--gold); }
+.rank-chip--silver   { background: rgba(143,176,204,.18); color: #8fb0cc; }
+
+/* 対戦表タブ */
+.battle-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 12px;
+}
+
+.battle-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 4px;
+  border: 1px solid var(--line2);
+  background: rgba(0,0,0,.16);
+  color: var(--muted);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+
+.battle-tab-time { font-size: 13px; font-weight: 700; line-height: 1; }
+.battle-tab-ranks { display: flex; align-items: center; gap: 3px; }
+.battle-tab-vs { font-size: 9px; opacity: .5; }
+
+.battle-tab.is-active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(215,183,106,.08);
+}
+
+/* 対戦カードリスト */
+.battle-matchup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 8px 0;
+}
+
+.battle-matchup-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.battle-matchup-vs {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 700;
+  opacity: .7;
+  flex-shrink: 0;
+}
+
+/* Rules - テーブルスクロールコンテナ */
+.rules__table-scroll {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: var(--r);
+  border: 1px solid var(--line2);
+  background: rgba(10, 20, 35, 0.5);
+}
+
+/* Rules - テーブル本体 */
+.rules__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(15, 25, 40, 0.6);
+  min-width: 600px;
+}
+
+.rules__table th,
+.rules__table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: middle;
+}
+
+.rules__table th {
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(183, 192, 223, 0.85);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+/* ヘッダーの昇格枠/降格枠の色 */
+.rules__table th.promote-header {
+  color: var(--green);
+}
+
+.rules__table th.demote-header {
+  color: var(--red);
+}
+
+.rules__table td {
+  color: var(--txt);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.rules__table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.rules__table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rules__table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.rules__table tbody tr:nth-child(even):hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rules__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Rules - ランク別アイコンとカラー */
+.rules__table .rank-cell {
+  position: relative;
+  padding-left: 40px;
+  font-weight: 700;
+}
+
+.rules__table .rank-cell::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* レジェンド: 紫 */
+.rules__table tr[data-rank="legend"] .rank-cell {
+  color: #9b59b6;
+}
+
+.rules__table tr[data-rank="legend"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #c39bd3, #9b59b6);
+  border-color: #c39bd3;
+}
+
+/* ダイヤモンド: 青 */
+.rules__table tr[data-rank="diamond"] .rank-cell {
+  color: #3498db;
+}
+
+.rules__table tr[data-rank="diamond"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #5dade2, #3498db);
+  border-color: #5dade2;
+}
+
+/* プラチナ: 銀/グレー */
+.rules__table tr[data-rank="platinum"] .rank-cell {
+  color: #95a5a6;
+}
+
+.rules__table tr[data-rank="platinum"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #bdc3c7, #95a5a6);
+  border-color: #bdc3c7;
+}
+
+/* ゴールド: 金/黄色 */
+.rules__table tr[data-rank="gold"] .rank-cell {
+  color: #f1c40f;
+}
+
+.rules__table tr[data-rank="gold"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #f9e79f, #f1c40f);
+  border-color: #f9e79f;
+}
+
+/* シルバー: 白銀/ライトグレー */
+.rules__table tr[data-rank="silver"] .rank-cell {
+  color: #bdc3c7;
+}
+
+.rules__table tr[data-rank="silver"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #d5dbdb, #bdc3c7);
+  border-color: #d5dbdb;
+}
+
+/* ブロンズ: 銅/オレンジ */
+.rules__table tr[data-rank="bronze"] .rank-cell {
+  color: #d35400;
+}
+
+.rules__table tr[data-rank="bronze"] .rank-cell::before {
+  background: radial-gradient(circle at 30% 30%, #e59866, #d35400);
+  border-color: #e59866;
+}
+
+/* Rules - ボーナスレベルのアイコンとカラー */
+.rules__table .level-cell {
+  position: relative;
+  padding-left: 40px;
+  font-weight: 700;
+}
+
+.rules__table .level-cell::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Level 1: グレー（プラチナ相当） */
+.rules__table tr[data-level="1"] .level-cell {
+  color: #95a5a6;
+}
+
+.rules__table tr[data-level="1"] .level-cell::before {
+  background: radial-gradient(circle at 30% 30%, #bdc3c7, #95a5a6);
+  border-color: #bdc3c7;
+}
+
+/* Level 2: 青（ダイヤモンド相当） */
+.rules__table tr[data-level="2"] .level-cell {
+  color: #3498db;
+}
+
+.rules__table tr[data-level="2"] .level-cell::before {
+  background: radial-gradient(circle at 30% 30%, #5dade2, #3498db);
+  border-color: #5dade2;
+}
+
+/* Level 3: 緑 */
+.rules__table tr[data-level="3"] .level-cell {
+  color: var(--green);
+}
+
+.rules__table tr[data-level="3"] .level-cell::before {
+  background: radial-gradient(circle at 30% 30%, #52d998, var(--green));
+  border-color: #52d998;
+}
+
+/* Level 4: 紫（レジェンド相当） */
+.rules__table tr[data-level="4"] .level-cell {
+  color: #9b59b6;
+}
+
+.rules__table tr[data-level="4"] .level-cell::before {
+  background: radial-gradient(circle at 30% 30%, #c39bd3, #9b59b6);
+  border-color: #c39bd3;
+}
+
+/* Level 5: ゴールド */
+.rules__table tr[data-level="5"] .level-cell {
+  color: var(--gold);
+}
+
+.rules__table tr[data-level="5"] .level-cell::before {
+  background: radial-gradient(circle at 30% 30%, #f0d080, var(--gold));
+  border-color: #f0d080;
+}
+
+/* Rules - ボーナス倍率の強調 */
+.rules__table .multiplier-cell {
+  color: var(--gold);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rules - 昇格枠/降格枠の色 */
+.rules__table .promote-cell {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.rules__table .demote-cell {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* 値が「-」または「なし」の場合は通常色に戻す */
+.rules__table .promote-cell.neutral,
+.rules__table .demote-cell.neutral {
+  color: rgba(183, 192, 223, 0.7);
+  font-weight: 500;
+}
+
+/* Rules - 備考欄のスタイル */
+.rules__table .note-cell {
+  font-size: 13px;
+  color: rgba(183, 192, 223, 0.9);
+  font-weight: 500;
+}
+
+.rules__table .auto-promote {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.rules__table .auto-demote {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ===== Battle Result コンポーネント ===== */
+.battle-result {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 20px;
+  background: #0a0e1a;
+  border: 1px solid var(--line2);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* 左右セクション共通 */
+.battle-result__side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ヘッダー */
+.battle-result__header {
+  padding: 12px 16px;
+  font-weight: 800;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: .02em;
+  color: var(--txt);
+}
+
+.battle-result__side--promote .battle-result__header {
+  background: #1a2b4d;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.battle-result__side--demote .battle-result__header {
+  background: #3d1a24;
+  border-bottom: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* WIN/LOSE ボックスのコンテナ */
+.battle-result__outcomes {
+  display: flex;
+  flex: 1;
+  gap: 1px;
+  background: var(--line);
+  padding: 1px;
+}
+
+/* WIN/LOSE 各ボックス */
+.battle-result__outcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 12px;
+  background: rgba(10, 14, 26, 0.85);
+}
+
+/* WIN / LOSE ラベル */
+.battle-result__label {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: var(--txt);
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+
+.battle-result__label-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0;
+  margin-left: 2px;
+}
+
+/* 結果テキスト */
+.battle-result__value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.battle-result__value--up {
+  color: var(--green);
+}
+
+.battle-result__value--down {
+  color: var(--red);
+}
+
+/* 中央: VS */
+.battle-result__vs-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  background: #0a0e1a;
+  position: relative;
+  z-index: 1;
+}
+
+.battle-result__vs-line {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.battle-result__vs-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: #0a0e1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: .04em;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(215, 183, 106, 0.2);
+  margin: 8px 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 520px) {
+  .battle-result {
+    flex-direction: column;
+  }
+
+  .battle-result__vs-wrap {
+    flex-direction: row;
+    padding: 4px 0;
+  }
+
+  .battle-result__vs-line {
+    flex: 1;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .battle-result__vs-badge {
+    margin: 0 8px;
+  }
+}
+
+/* Rules - 数式表示 */
+.rules__formula {
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  border: 1px solid rgba(215, 183, 106, 0.25);
+  font-weight: 800;
+  font-size: 15.5px;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+/* Rules - 計算例 */
+.rules__example {
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  border-left: 4px solid var(--gold);
+}
+
+.rules__example p {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Rules - ② ボーナス倍率の適用 計算カード */
+.bonus-calc {
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bonus-calc-block {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.bonus-calc-block-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.bonus-calc-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.bonus-calc-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.bonus-calc-key { color: var(--muted); }
+.bonus-calc-key::after { content: '：'; opacity: .5; }
+.bonus-calc-val { color: var(--txt); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.bonus-calc-sep {
+  height: 1px;
+  background: var(--line2);
+  margin: 2px 0;
+}
+
+.bonus-calc-down {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gold);
+  padding: 8px 0;
+  opacity: .6;
+}
+
+.bonus-calc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bonus-calc-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.bonus-calc-step-key { color: var(--muted); white-space: nowrap; }
+.bonus-calc-step-key::after { content: '：'; opacity: .5; }
+.bonus-calc-step-eq { color: var(--txt); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bonus-calc-step-eq::after { content: ' ＝'; opacity: .5; }
+.bonus-calc-step-ans { color: var(--gold); font-weight: 700; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.bonus-calc-level {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line2);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.bonus-calc-result {
+  background: linear-gradient(135deg, rgba(215,183,106,.12), rgba(215,183,106,.03));
+  border: 1px solid rgba(215,183,106,.25);
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bonus-calc-result-eq { font-size: 13px; color: var(--muted); }
+.bonus-calc-result-total {
+  font-size: 15px;
+  font-weight: 100;
+  color: var(--gold);
+  font-family: "Dela Gothic One", sans-serif;
+  letter-spacing: .04em;
+  line-height: 1.2;
+}
+.bonus-calc-result-label { font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+
+/* ===== Mobile sheet ===== */
+.sheetOverlay{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.55);
+  z-index:80;
+}
+.sheet{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  background: linear-gradient(180deg, rgba(15,20,40,.96), rgba(6,10,20,.98));
+  border-top:1px solid var(--line2);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -24px 80px rgba(0,0,0,.55);
+  z-index:90;
+  padding:10px 14px 18px;
+  max-height: 76vh;
+  overflow:auto;
+}
+.sheet__bar{
+  width:48px; height:5px;
+  border-radius:999px;
+  background: rgba(255,255,255,.18);
+  margin: 4px auto 10px;
+}
+.sheet__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+.sheet__title{font-weight:900}
+.sheet__body{padding-top:12px}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .search__box{min-width:260px}
+  .grid{grid-template-columns: 1fr 320px}
+}
+@media (max-width: 860px){
+  .topbar__inner{flex-wrap:wrap}
+  .brand{min-width:auto}
+  .search{width:100%; margin-left:0}
+  .search__box{flex:1; min-width:0}
+
+  .grid{grid-template-columns: 1fr}
+  /* SPでは右の固定詳細（クイック）を出さない（シートで見る） */
+  .detailPanel{display:none}
+  .rankList{grid-template-columns: 1fr}
+  .row[data-rankpos="1"]{grid-column:auto}
+}
+@media (max-width: 520px){
+  .hero__title{font-size:28px}
+  .monthToggle{height:50px}
+
+  /* SP：詳細ページの見出し「詳細」を縦割れさせない */
+  .detailPage__title{white-space: nowrap;}
+
+  /* ===== ランキング上部4チップ ===== */
+  .hero__meta{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .hero__meta > .chip,
+  .hero__meta > .chips{
+    min-width: 0;
+  }
+
+  /* 表示 / 定員 */
+  .hero__meta > .chip{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  /* 昇格 / 降格 */
+  .hero__meta > .chips{
+    display: contents;
+  }
+
+  .hero__meta > .chips .chip{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 13px;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  /* ===== ランキングカード ===== */
+  .row{
+    grid-template-columns: 44px 50px 1fr;
+    padding: 12px 12px;
+  }
+
+  .rowMain{
+    min-width: 0;
+    padding-right: 78px;
+  }
+
+  .rowMain__id{
+    font-size:16px;
+  }
+
+  /* スマホでも昇格/降格バッジ表示 */
+  .rowSide{
+    display:flex !important;
+    position:absolute;
+    top:10px;
+    right:12px;
+    align-items:center;
+    gap:6px;
+    z-index:2;
+  }
+
+  .rowSide .badges{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .rowSide .badge{
+    padding:4px 8px;
+    font-size:11px;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+
+  .row__tiny{
+    display:none;
+  }
+  /* セクションカード */
+  .card-section {
+    padding: 14px 16px;
+  }
+
+  /* Event */
+  .event__title {
+    font-size: 20px;
+    margin: 0 0 14px;
+  }
+
+  .event-list {
+    gap: 10px;
+  }
+
+  .event h3 {
+    font-size: 14px;
+    margin: 0 0 10px;
+  }
+
+  /* Rules */
+  .rules__title {
+    font-size: 20px;
+    margin: 0 0 14px;
+  }
+
+  .rules-list {
+    gap: 10px;
+  }
+
+  .rules h3 {
+    font-size: 14px;
+    margin: 0 0 10px;
+  }
+
+  /* モバイルではcard padding(14px 16px)に合わせてネガティブマージンを調整 */
+  .card-section h3 {
+    font-size: 15px;
+    margin: -14px -16px 12px -16px;
+    padding: 12px 16px;
+  }
+
+  .rules__subsection {
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+
+  .rules__subsection h4 {
+    font-size: 12px;
+    margin: 0 0 8px;
+  }
+
+  .rules__table-scroll {
+    -webkit-overflow-scrolling: touch;
+    margin: 14px 0;
+  }
+
+  .rules__table th,
+  .rules__table td {
+    padding: 10px 12px;
+  }
+
+  .rules__table th {
+    font-size: 11.5px;
+  }
+
+  .rules__table td {
+    font-size: 13.5px;
+  }
+
+  .rules__formula {
+    margin: 14px 0;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .rules__example {
+    margin: 14px 0;
+    padding: 12px 14px;
+  }
+
+  .rules__example p {
+    font-size: 13px;
+  }
+
+  /* Rules - ランクセル・レベルセルのレスポンシブ */
+  .rules__table .rank-cell,
+  .rules__table .level-cell {
+    padding-left: 34px;
+    font-size: 13px;
+  }
+
+  .rules__table .rank-cell::before,
+  .rules__table .level-cell::before {
+    width: 16px;
+    height: 16px;
+    left: 10px;
+  }
+
+  /* rules__image の最大幅修正（Critical） */
+  .rules__image {
+    max-width: min(360px, 100%);
+  }
+
+  /* battle-tabs のコンパクト化（Critical） */
+  .battle-tabs {
+    gap: 4px;
+  }
+
+  .battle-tab {
+    padding: 6px 2px;
+    min-height: 44px;
+    min-width: 0;
+  }
+
+  /* battle-tab-ranks: ランクチップを縦積みにしてタブ幅内に収める */
+  .battle-tab-ranks {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  /* battle-matchup-item のフォント縮小（High） */
+  .battle-matchup-item {
+    font-size: 12px;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  /* bonus-calc-step のフォント縮小（High） */
+  .bonus-calc-step {
+    font-size: 11px;
+  }
+
+  .bonus-calc-step-ans {
+    font-size: 12px;
+  }
+}
+
+
+/* ===== Bonus progress (detail) ===== */
+.bonusProg{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.12);
+}
+.bonusProg__title{
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.bonusProg__text{
+  margin-top: 6px;
+  color: rgba(255,255,255,.78);
+  font-size: 13px;
+}
+.bonusProg__bars{
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+.barRow{
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.barRow__label{
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+}
+.barRow__val{
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+  white-space: nowrap;
+}
+.bar{
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+.bar__fill{
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,.70);
 }
 @media (max-width: 520px){
   .barRow{ grid-template-columns: 36px 1fr; }
