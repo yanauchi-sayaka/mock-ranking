@@ -1893,10 +1893,11 @@ body{
 /* モバイル対応（520px以下） */
 @media (max-width: 520px) {
   .event-container .card-section {
-    width: 100%;
+    width: calc(100% + 24px);
     max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: -12px;
+    margin-right: -12px;
+    box-sizing: border-box;
   }
 
   /* card-sectionのpadding縮小(14px 16px)に合わせてネガティブマージンを補正 */
