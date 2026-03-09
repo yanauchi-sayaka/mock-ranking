@@ -1894,8 +1894,8 @@ body{
 @media (max-width: 520px) {
   /* ルールページ全体の左右余白を減らす */
   .event-container {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   /* カードを横に広げる */
