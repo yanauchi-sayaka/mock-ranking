@@ -374,6 +374,7 @@ body{
   font-size: 12px;
   opacity: .75;
   font-weight: 700;
+  white-space: nowrap;
 }
 .metaLine2{
   margin-top: 6px;
@@ -2441,6 +2442,7 @@ body{
   font-size: 12px;
   opacity: .75;
   font-weight: 700;
+  white-space: nowrap;
 }
 .metaLine2{
   margin-top: 6px;
