@@ -2045,3 +2045,70 @@ body{
     inset 0 0 0 1px rgba(243,225,176,.10),
     0 0 14px rgba(216,184,108,.18);
 }
+
+@media (max-width: 520px){
+  /* スマホでも昇格/降格バッジを表示 */
+  .row{
+    position: relative;
+    padding-top: 46px;
+  }
+
+  .rowSide{
+    display: flex !important;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    align-items: flex-end;
+    gap: 4px;
+    z-index: 2;
+  }
+
+  .rowSide .badges{
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .rowSide .badge{
+    padding: 4px 8px;
+    font-size: 11px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  /* 補足の小さい文字はいったん非表示の方が収まりやすい */
+  .row__tiny{
+    display: none;
+  }
+}
+
+@media (max-width: 520px){
+  /* 表示・定員・昇格/降格ライン */
+  .hero__meta{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .hero__meta .chip{
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 12px;
+  }
+
+  /* 表示 と 定員 を横2列のまま揃える */
+  .hero__meta .chip:nth-child(1),
+  .hero__meta .chip:nth-child(2){
+    grid-column: span 1;
+  }
+
+  /* 昇格ライン / 降格ラインも2列で並べる */
+  .hero__meta .chip:nth-child(3),
+  .hero__meta .chip:nth-child(4){
+    grid-column: span 1;
+  }
+}
