@@ -1890,7 +1890,6 @@ body{
   margin: 10px 0;
 }
 
-/* モバイル対応（520px以下） */
 @media (max-width: 520px) {
   .event-container .card-section {
     width: calc(100% + 32px) !important;
@@ -1919,9 +1918,11 @@ body{
     min-height: 80px !important;
   }
 
-  /* 通常本文は左揃え */
-  .event-container .card-section p,
-  .event-container .card-section li {
+  /* 通常の説明文・箇条書き */
+  .event-container .card-section > p,
+  .event-container .card-section > ul > li,
+  .event-container .rules__subsection > p,
+  .event-container .rules__subsection > ul > li {
     text-align: left !important;
   }
 
@@ -1929,11 +1930,9 @@ body{
     align-items: stretch !important;
   }
 
-  /* 計算・図解系は中央揃え */
+  /* 計算・図解系は中央 */
   .event-container .rules__formula,
   .event-container .rules__formula *,
-  .event-container .rules__example,
-  .event-container .rules__example *,
   .event-container .bonus-calc,
   .event-container .bonus-calc *,
   .event-container .battle-result,
