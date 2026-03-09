@@ -1903,8 +1903,7 @@ body{
   /* 通常本文だけ左揃え */
   .event-container .card-section > p,
   .event-container .card-section > ul,
-  .event-container .card-section > ul li,
-  .event-container .rules__example p {
+  .event-container .card-section > ul li {
     text-align: left;
   }
 
@@ -1912,7 +1911,8 @@ body{
     align-items: stretch;
   }
 
-  /* 計算ブロックは中央揃えに戻す */
+  /* 計算・例ブロックは中央揃え */
+  .event-container .rules__example p,
   .event-container .bonus-calc-block-label,
   .event-container .bonus-calc-down,
   .event-container .bonus-calc-row,
