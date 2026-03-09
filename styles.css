@@ -1892,21 +1892,25 @@ body{
 
 /* モバイル対応（520px以下） */
 @media (max-width: 520px) {
-  /* ルールページ全体の左右余白を減らす */
+  /* 外側の余白を消す */
   .event-container {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  /* カードを横に広げる */
-  .event-container .card-section {
     width: 100%;
     max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  /* card-sectionのpadding縮小(14px 16px)に合わせてネガティブマージンを補正 */
+  /* カードを横いっぱいに広げる */
+  .event-container .card-section {
+    width: calc(100vw - 12px) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 14px 16px;
+    box-sizing: border-box;
+  }
+
+  /* タイトル帯 */
   .event-container .card-section h3 {
     margin: -14px -16px 12px -16px;
     padding: 12px 16px;
