@@ -1900,9 +1900,18 @@ body{
     box-sizing: border-box;
   }
 
-  /* モバイルだけ本文は左揃え */
+  /* 見出し以外の本文を全部左揃えに統一 */
   .event-container .card-section p,
-  .event-container .card-section li {
+  .event-container .card-section li,
+  .event-container .card-section ul,
+  .event-container .card-section .rules__example p,
+  .event-container .card-section .bonus-calc-row,
+  .event-container .card-section .bonus-calc-step,
+  .event-container .card-section .bonus-calc-block-label,
+  .event-container .card-section .bonus-calc-down,
+  .event-container .card-section .bonus-calc-level,
+  .event-container .card-section .bonus-calc-result-eq,
+  .event-container .card-section .bonus-calc-result-label {
     text-align: left;
   }
 
@@ -1914,6 +1923,7 @@ body{
     margin: -14px -16px 12px -16px;
     padding: 12px 16px;
     font-size: 15px;
+    text-align: center;
   }
 
   .event-rule-section-heading {
