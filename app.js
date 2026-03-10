@@ -515,7 +515,7 @@ function currentDetailIdFromHash(hash = location.hash){
       const nextCfg = BONUS_LEVELS.find(x=>x.level===nextLv);
       const diamondsNote = (next.diamondsRemain>0) ? `（ダイヤ150kまで残り ${fmt(next.diamondsRemain)}）` : "";
       prog.innerHTML = `
-        <div class="bonusProg__title">次のボーナス：レベル${nextLv}（目安）</div>
+        <div class="bonusProg__title">次のボーナス：レベル${nextLv}</div>
         <div class="bonusProg__text">あと ${fmt(next.remainDays)}日 / ${fmt(next.remainHours)}h ${diamondsNote}</div>
         <div class="bonusProg__bars">
           <div class="barRow">
