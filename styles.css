@@ -104,6 +104,7 @@ body{
   border-radius: 16px;
   padding: 20px;
   backdrop-filter: blur(12px);
+  border: 1px solid rgba(215, 183, 106, .25);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, .5),
     0 0 24px rgba(215, 183, 106, .05),
@@ -157,12 +158,19 @@ body{
 .search{margin-left:auto; display:flex; gap:10px; align-items:center}
 .search__box{
   display:flex; align-items:center; gap:10px;
-  background: rgba(0,0,0,.18);
-  border:1px solid var(--line2);
+  background: rgba(255,255,255,.07);
+  border:1.5px solid rgba(215,183,106,.45);
   border-radius:999px;
   padding:10px 14px;
   min-width: 360px;
 }
+
+.search__box:focus-within{
+  background: rgba(255,255,255,.11);
+  border-color: rgba(215,183,106,.85);
+  box-shadow: 0 0 0 3px rgba(215,183,106,.15);
+}
+
 .search__icon{width:16px;height:16px;display:inline-block;opacity:.7;}
 .search__input{
   width:100%;
@@ -171,6 +179,9 @@ body{
   color:var(--txt);
   font-size:14px;
 }
+
+.search__input::placeholder{ color: rgba(200,200,200,.55); }
+
 .search__btn{
   border:0;
   background: radial-gradient(circle at 30% 30%, #ffe6a7, #d7b76a);
@@ -180,6 +191,8 @@ body{
   border-radius:999px;
   cursor:pointer;
 }
+
+.search__btn:hover{ opacity:.85; }
 
 /* ===== Hero ===== */
 .hero{padding:22px 22px 18px}
@@ -553,7 +566,7 @@ body{
 }
 
 /* ===== Event ===== */
-.event-container { width: 100%; }
+.event-container { width: 100%; padding-bottom: 48px; }
 
 .event__title{
   margin: 0 0 20px;
@@ -1803,6 +1816,7 @@ body{
 /* カード本体背景色 */
 .event-container .card-section {
   background: #332b24;
+  border-color: rgba(215, 183, 106, .2);
 }
 
 /* カード見出し部（タイトルエリア）*/
@@ -2066,4 +2080,16 @@ body{
     box-shadow: 0 8px 20px rgba(216,184,108,.24) !important;
     border: 0 !important;
   }
+}
+
+.search--inline{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 560px;
+  justify-content: center;
+}
+.search--inline .search__box{
+  flex: 1;
+  min-width: 0;
 }

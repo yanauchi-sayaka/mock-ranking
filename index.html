@@ -366,11 +366,11 @@
                 </div>
                 <div class="battle-result__outcomes">
                   <div class="battle-result__outcome">
-                    <div class="battle-result__label">WIN <span class="battle-result__label-sub">（勝利）</span></div>
+                    <div class="battle-result__label">WIN</div>
                     <div class="battle-result__value battle-result__value--up">↑ランク昇格</div>
                   </div>
                   <div class="battle-result__outcome">
-                    <div class="battle-result__label">LOSE <span class="battle-result__label-sub">（敗北）</span></div>
+                    <div class="battle-result__label">LOSE</div>
                     <div class="battle-result__value">ランク維持</div>
                   </div>
                 </div>
@@ -390,11 +390,11 @@
                 </div>
                 <div class="battle-result__outcomes">
                   <div class="battle-result__outcome">
-                    <div class="battle-result__label">WIN <span class="battle-result__label-sub">（勝利）</span></div>
+                    <div class="battle-result__label">WIN</div>
                     <div class="battle-result__value">ランク維持</div>
                   </div>
                   <div class="battle-result__outcome">
-                    <div class="battle-result__label">LOSE <span class="battle-result__label-sub">（敗北）</span></div>
+                    <div class="battle-result__label">LOSE</div>
                     <div class="battle-result__value battle-result__value--down">↓ランク降格</div>
                   </div>
                 </div>
@@ -507,9 +507,15 @@
             <div class="muted">
               <p>TikTokIDで検索していただくと、詳細ページをご覧いただけます。</p>
               <p>※ブロンズランク101位以下の方は詳細ページからのみ閲覧可能となります。</p>
+              <div class="search search--inline" style="margin-top:16px; margin-bottom:8px;">
+               <div class="search__box">
+                <span class="search__icon"></span>
+                <input id="idSearchBottom" class="search__input" type="text" placeholder="TikTok ID検索（例：mugen_siba）" />
+               </div>
+               <button id="idSearchBtnBottom" class="search__btn">検索</button>
+              </div>
             </div>
           </div>
-　
 
           </div><!-- /.rules-list -->
 
@@ -550,5 +556,24 @@
 
   <script src="./data.js" defer></script>
   <script src="./app.js" defer></script>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+     const bottomInput = document.getElementById('idSearchBottom');
+     const bottomBtn   = document.getElementById('idSearchBtnBottom');
+     const topInput    = document.getElementById('idSearch');
+     const topBtn      = document.getElementById('idSearchBtn');
+
+     function triggerSearch() {
+       if (!topInput || !bottomInput) return;
+       topInput.value = bottomInput.value;
+       topBtn && topBtn.click();
+     }
+
+     bottomBtn && bottomBtn.addEventListener('click', triggerSearch);
+     bottomInput && bottomInput.addEventListener('keydown', function(e) {
+       if (e.key === 'Enter') triggerSearch();
+     });
+   });
+ </script>
 </body>
 </html>
