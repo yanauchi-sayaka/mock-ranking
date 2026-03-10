@@ -8,7 +8,7 @@
   const state = {
     view: "ranking",          // ranking | event | detail
     rankKey: "legend",        // legend..bronze
-    monthKey: "last",         // last | this
+    monthKey: "this",         // last | this
     activeId: null,           // quick detail active
     activeEntry: null,        // entry in current view
   };
