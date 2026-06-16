@@ -80,7 +80,7 @@ body{
 
 .wrap{
   width:min(1200px, calc(100% - 32px));
-  margin: 24px auto 80px;
+  margin: 24px auto 40px;
   position:relative;
 }
 
@@ -139,6 +139,7 @@ body{
   box-shadow: 0 0 0 5px rgba(215,183,106,.12);
 }
 .brand__title{font-weight:800; letter-spacing:.02em}
+.brand__sub{font-size:12px; color:var(--muted); margin-top:2px}
 
 .nav{display:flex; gap:10px}
 .nav__btn{
@@ -198,6 +199,23 @@ body{
 .hero{padding:22px 22px 18px}
 .hero__title{margin:0 0 12px; font-size:34px; letter-spacing:.02em}
 .hero__meta{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
+
+/* ===== キービジュアル ===== */
+#view-ranking .hero.card{
+  overflow: hidden;
+  padding: 0;
+}
+#view-ranking .hero__kv-image{
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+#view-ranking .hero__content{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 22px 22px 18px;
+}
 
 .chips{display:flex; gap:10px; flex-wrap:wrap}
 .chip{
@@ -276,6 +294,8 @@ body{
   align-items:start;
 }
 .list{padding:16px}
+.list__head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
+.list__note{font-size:13px; color:var(--muted)}
 .rankList{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -315,7 +335,7 @@ body{
   border-radius:16px;
   padding:12px 12px;
   display:grid;
-  grid-template-columns: 44px 52px 1fr auto;
+  grid-template-columns: 44px 52px 1fr;
   gap:12px;
   align-items:center;
   cursor:pointer;
@@ -342,6 +362,11 @@ body{
 }
 
 /* avatar */
+.avatar-link{
+  display:contents;
+  text-decoration:none;
+  color:inherit;
+}
 .avatar{
   width:52px; height:52px;
   border-radius:999px;
@@ -389,17 +414,10 @@ body{
 }
 .metaLine2{
   margin-top: 6px;
-  display:flex;
-  align-items:center;
-  gap:8px;
   opacity: .92;
   font-weight: 700;
-
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.metaSep{
+}.metaSep{
   opacity: .45;
 }
 .rowMain__meta{
@@ -453,6 +471,10 @@ body{
   align-items:flex-end;
   font-size:12px;
   color:var(--muted);
+  position:absolute;
+  top:10px;
+  right:12px;
+  z-index:2;
 }
 .badges{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
 .badge{
@@ -554,6 +576,7 @@ body{
 }
 .detailPage__title{font-weight:900; font-size:18px}
 .detailPage__body{padding-top:8px}
+.detail__hint{font-size:12px; color:var(--muted)}
 
 /* back button: keep "← 戻る" on one line (SPで縦割れしない) */
 #backBtn{
@@ -1516,24 +1539,8 @@ body{
     padding: 12px 12px;
   }
 
-  .rowMain{
-    min-width: 0;
-    padding-right: 78px;
-  }
-
   .rowMain__id{
     font-size:16px;
-  }
-
-  /* スマホでも昇格/降格バッジ表示 */
-  .rowSide{
-    display:flex !important;
-    position:absolute;
-    top:10px;
-    right:12px;
-    align-items:center;
-    gap:6px;
-    z-index:2;
   }
 
   .rowSide .badges{
@@ -1657,22 +1664,6 @@ body{
     max-width: min(360px, 100%);
   }
 
-  /* battle-tabs のコンパクト化（Critical） */
-  .battle-tabs {
-    gap: 4px;
-  }
-
-  .battle-tab {
-    padding: 6px 2px;
-    min-height: 44px;
-    min-width: 0;
-  }
-
-  /* battle-tab-ranks: ランクチップを縦積みにしてタブ幅内に収める */
-  .battle-tab-ranks {
-    flex-direction: column;
-    gap: 1px;
-  }
 
   /* battle-matchup-item のフォント縮小（High） */
   .battle-matchup-item {
@@ -1910,6 +1901,13 @@ body{
   margin: 10px 0;
 }
 
+.event__section-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
 /* モバイル対応（520px以下） */
 @media (max-width: 520px) {
   .event-container .card-section {
@@ -2090,4 +2088,49 @@ body{
 .search--inline .search__box{
   flex: 1;
   min-width: 0;
+}
+
+/* battle-tabs のコンパクト化（640px以下で適用） */
+@media (max-width: 640px) {
+  .battle-tabs {
+    gap: 4px;
+  }
+
+  .battle-tab {
+    padding: 6px 2px;
+    min-height: 44px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* battle-tab-ranks: ランクチップを縦積みにしてタブ幅内に収める */
+  .battle-tab-ranks {
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ===== Footer ===== */
+.site-footer{
+  background: #332b24;
+  padding: 48px 20px;
+  position: relative;
+}
+.site-footer::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(215,183,106,0) 0%, #b8914a 30%, var(--gold) 50%, #b8914a 70%, rgba(215,183,106,0) 100%);
+}
+.site-footer__inner{
+  text-align: center;
+}
+.site-footer__copy{
+  font-size: .8rem;
+  color: var(--muted);
+  margin: 0;
+  letter-spacing: .08em;
 }

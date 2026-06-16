@@ -41,18 +41,21 @@
     <!-- ===== Ranking View ===== -->
     <section id="view-ranking" class="view">
       <div class="hero card">
-        <h1 class="hero__title">登竜門ランキング</h1>
+        <img class="hero__kv-image" src="./images/key-visual.png" alt="" aria-hidden="true">
+        <div class="hero__content">
+          <h1 class="hero__title">登竜門ランキング</h1>
 
-        <div class="hero__meta">
-          <div class="chips" id="metaChips"></div>
-        </div>
+          <div class="hero__meta">
+            <div class="chips" id="metaChips"></div>
+          </div>
 
-        <div class="rankTabs" id="rankTabs"></div>
+          <div class="rankTabs" id="rankTabs"></div>
 
-        <div class="monthToggle" role="tablist" aria-label="先月/今月 切り替え">
-          <button class="monthToggle__btn" data-month="last" role="tab" aria-selected="false">先月</button>
-          <button class="monthToggle__btn is-active" data-month="this" role="tab" aria-selected="true">今月</button>
-          <div class="monthToggle__thumb" id="monthThumb" aria-hidden="true"></div>
+          <div class="monthToggle" role="tablist" aria-label="先月/今月 切り替え">
+            <button class="monthToggle__btn" data-month="last" role="tab" aria-selected="false">先月</button>
+            <button class="monthToggle__btn is-active" data-month="this" role="tab" aria-selected="true">今月</button>
+            <div class="monthToggle__thumb" id="monthThumb" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
 
@@ -85,25 +88,6 @@
     <section id="view-event" class="view is-hidden">
       <div class="wrap">
         <div class="event-container event">
-          <!-- トロフィーバナー -->
-          <div class="event__hero">
-            <svg class="event__trophy" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="trophyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#f0d48a"/>
-                  <stop offset="50%" style="stop-color:#d7b76a"/>
-                  <stop offset="100%" style="stop-color:#b8912a"/>
-                </linearGradient>
-              </defs>
-              <path d="M35,10 L85,10 L80,50 Q60,65 40,50 Z" fill="url(#trophyGrad)"/>
-              <path d="M35,15 Q15,20 18,38 Q20,50 35,48" fill="none" stroke="url(#trophyGrad)" stroke-width="5" stroke-linecap="round"/>
-              <path d="M85,15 Q105,20 102,38 Q100,50 85,48" fill="none" stroke="url(#trophyGrad)" stroke-width="5" stroke-linecap="round"/>
-              <rect x="45" y="65" width="30" height="6" rx="3" fill="url(#trophyGrad)"/>
-              <rect x="38" y="71" width="44" height="8" rx="4" fill="url(#trophyGrad)"/>
-              <text x="60" y="38" text-anchor="middle" font-size="18" fill="#fff" opacity=".9">★</text>
-            </svg>
-            <p class="event__hero-text">イズニート 登竜門</p>
-          </div>
 
           <!-- ===== イベント概要セクション ===== -->
           <div class="event-rule-section-heading">イベント概要</div>
@@ -131,16 +115,12 @@
 
               <div class="rules__subsection">
                 <h4>ランク別特典</h4>
-                <div class="event__image-placeholder">
-                  <span>（説明画像 準備中）</span>
-                </div>
+                <img class="event__section-image" src="./images/rank-benefits.png" alt="ランク別特典">
               </div>
 
               <div class="rules__subsection">
                 <h4>継続特典</h4>
-                <div class="event__image-placeholder">
-                  <span>（説明画像 準備中）</span>
-                </div>
+                <img class="event__section-image" src="./images/continuation-benefits.png" alt="継続特典">
               </div>
             </div>
 
@@ -159,65 +139,7 @@
             <h3>ランク構成</h3>
             <img class="rules__image" src="./images/pyramid.webp" alt="ランクピラミッド">
 
-            <div class="rules__subsection">
-              <div class="rules__table-scroll">
-                <table class="rules__table">
-                  <thead>
-                    <tr>
-                      <th>ランク帯</th>
-                      <th>定員数</th>
-                      <th class="promote-header">↑ 昇格枠</th>
-                      <th class="demote-header">↓ 降格枠</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr data-rank="legend">
-                      <td class="rank-cell">レジェンド</td>
-                      <td>5人</td>
-                      <td class="promote-cell neutral">-</td>
-                      <td class="demote-cell">1人</td>
-                      <td></td>
-                    </tr>
-                    <tr data-rank="diamond">
-                      <td class="rank-cell">ダイヤモンド</td>
-                      <td>15人</td>
-                      <td class="promote-cell">3人</td>
-                      <td class="demote-cell">3人</td>
-                      <td></td>
-                    </tr>
-                    <tr data-rank="platinum">
-                      <td class="rank-cell">プラチナ</td>
-                      <td>50人</td>
-                      <td class="promote-cell">10人</td>
-                      <td class="demote-cell">10人</td>
-                      <td></td>
-                    </tr>
-                    <tr data-rank="gold">
-                      <td class="rank-cell">ゴールド</td>
-                      <td>150人</td>
-                      <td class="promote-cell">10人</td>
-                      <td class="demote-cell">20人</td>
-                      <td></td>
-                    </tr>
-                    <tr data-rank="silver">
-                      <td class="rank-cell">シルバー</td>
-                      <td>250人</td>
-                      <td class="promote-cell">20人</td>
-                      <td class="demote-cell">50人</td>
-                      <td class="note-cell">下位50人が<span class="auto-demote">自動降格</span></td>
-                    </tr>
-                    <tr data-rank="bronze">
-                      <td class="rank-cell">ブロンズ</td>
-                      <td>上記ランク以外の人</td>
-                      <td class="promote-cell">50人</td>
-                      <td class="demote-cell neutral">-</td>
-                      <td class="note-cell">上位50人が<span class="auto-promote">自動昇格</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <img class="event__section-image" src="./images/rank-structure-table.png" alt="ランク構成表">
           </div>
 
           <!-- 2. 登竜門ポイント -->
@@ -241,50 +163,7 @@
               <p>配信すればするほど、より高いボーナス倍率が適用される仕組みです。</p>
             </div>
 
-            <div class="rules__table-scroll">
-              <table class="rules__table">
-                <thead>
-                  <tr>
-                    <th>レベル</th>
-                    <th>有効LIVE日数</th>
-                    <th>LIVE時間</th>
-                    <th>倍率</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-level="1">
-                    <td class="level-cell">レベル 1</td>
-                    <td>≥ 18 日</td>
-                    <td>≥ 40 時間</td>
-                    <td class="multiplier-cell">× 1.2</td>
-                  </tr>
-                  <tr data-level="2">
-                    <td class="level-cell">レベル 2</td>
-                    <td>≥ 20 日</td>
-                    <td>≥ 80 時間</td>
-                    <td class="multiplier-cell">× 1.4</td>
-                  </tr>
-                  <tr data-level="3">
-                    <td class="level-cell">レベル 3</td>
-                    <td>≥ 20 日</td>
-                    <td>≥ 100 時間</td>
-                    <td class="multiplier-cell">× 1.6</td>
-                  </tr>
-                  <tr data-level="4">
-                    <td class="level-cell">レベル 4</td>
-                    <td>≥ 22 日</td>
-                    <td>≥ 120 時間</td>
-                    <td class="multiplier-cell">× 1.8</td>
-                  </tr>
-                  <tr data-level="5">
-                    <td class="level-cell">レベル 5</td>
-                    <td>≥ 24 日</td>
-                    <td>≥ 140 時間</td>
-                    <td class="multiplier-cell">× 2.0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <img class="event__section-image" src="./images/bonus-table.png" alt="ボーナス倍率表">
 
             <div class="rules__subsection">
               <p>例）</p>
@@ -351,9 +230,22 @@
           <div class="rules__section card-section">
             <h3>ランク入替戦</h3>
             <div>
-              <p>毎月7日に該当の対戦時間・対戦相手でバトルを行いランク入れ替えをする。</p>
-              <p>不戦敗ルール：上位ランク者がバトル拒否・不参加の場合、自動降格。対戦相手は自動昇格。</p>
-              <p>※ブロンズランク上位50人とシルバーランク下位50人は入替戦を行わず、自動入替となる。</p>
+              <p>毎月7日に該当の対戦時間でバトルを行い、勝敗によってランク入れ替えを決定します。</p>
+              <p>辞退者が出た場合、参加と回答した方の中から自動昇格・ランク維持となる場合があります。</p>
+              <p>※ブロンズランク上位50人とシルバーランク下位50人は入替戦を行わず、自動入替となります。</p>
+            </div>
+
+            <div class="rules__subsection">
+              <h4>辞退者が出た場合</h4>
+              <ul class="muted">
+                <li>降格対象者が辞退した場合：昇格対象者のうち、参加と回答した方の中から順位の高い順に自動昇格</li>
+                <li>昇格対象者が辞退した場合：降格対象者のうち、参加と回答した方の中から順位の高い順にランク維持</li>
+              </ul>
+            </div>
+
+            <div class="rules__example">
+              <p>例：ゴールドの降格対象者が3名辞退した場合、シルバーの昇格対象者のうち、参加と回答した方の中から上位3名がバトルなしでゴールドへ自動昇格となります。</p>
+              <p>例：シルバーの昇格対象者が3名辞退した場合、ゴールドの降格対象者のうち、参加と回答した方の中から上位3名がバトルなしでゴールド維持となります。</p>
             </div>
 
             <!-- 昇格・降格の結果コンポーネント -->
@@ -543,6 +435,12 @@
     </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__copy">© isneat, Inc.</p>
+    </div>
+  </footer>
+
   <!-- Mobile sheet -->
   <div id="sheetOverlay" class="sheetOverlay is-hidden" aria-hidden="true"></div>
   <div id="sheet" class="sheet is-hidden" role="dialog" aria-modal="true" aria-label="詳細">
@@ -556,24 +454,5 @@
 
   <script src="./data.js" defer></script>
   <script src="./app.js" defer></script>
-  <script>
-   document.addEventListener('DOMContentLoaded', function() {
-     const bottomInput = document.getElementById('idSearchBottom');
-     const bottomBtn   = document.getElementById('idSearchBtnBottom');
-     const topInput    = document.getElementById('idSearch');
-     const topBtn      = document.getElementById('idSearchBtn');
-
-     function triggerSearch() {
-       if (!topInput || !bottomInput) return;
-       topInput.value = bottomInput.value;
-       topBtn && topBtn.click();
-     }
-
-     bottomBtn && bottomBtn.addEventListener('click', triggerSearch);
-     bottomInput && bottomInput.addEventListener('keydown', function(e) {
-       if (e.key === 'Enter') triggerSearch();
-     });
-   });
- </script>
 </body>
 </html>
