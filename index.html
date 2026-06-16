@@ -237,10 +237,10 @@
 
             <div class="rules__subsection">
               <h4>辞退者が出た場合</h4>
-              <ul class="muted">
-                <li>降格対象者が辞退した場合：昇格対象者のうち、参加と回答した方の中から順位の高い順に自動昇格</li>
-                <li>昇格対象者が辞退した場合：降格対象者のうち、参加と回答した方の中から順位の高い順にランク維持</li>
-              </ul>
+              <div>
+                <p>降格対象者が辞退した場合：昇格対象者のうち、参加と回答した方の中から順位の高い順に自動昇格</p>
+                <p>昇格対象者が辞退した場合：降格対象者のうち、参加と回答した方の中から順位の高い順にランク維持</p>
+              </div>
             </div>
 
             <div class="rules__example">
@@ -295,37 +295,45 @@
             </div><!-- /.battle-result -->
           </div>
 
-          <!-- 5. 対戦時間 -->
+                    <!-- 5. 対戦時間 -->
           <div class="rules__section card-section">
             <h3>対戦時間</h3>
 
-            <div class="battle-matchup-list">
-              <div class="battle-matchup-item">
+            <div class="battle-time-tabs">
+              <div class="battle-time-tab">
                 <span class="battle-tab-time">21:00</span>
-                <span class="rank--silver">シルバー</span>
-                <span class="battle-matchup-vs">↔</span>
-                <span class="rank--gold">ゴールド</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--silver">シルバー</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--gold">ゴールド</span>
+                </span>
               </div>
 
-              <div class="battle-matchup-item">
+              <div class="battle-time-tab">
                 <span class="battle-tab-time">21:30</span>
-                <span class="rank--gold">ゴールド</span>
-                <span class="battle-matchup-vs">↔</span>
-                <span class="rank--platinum">プラチナ</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--gold">ゴールド</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--platinum">プラチナ</span>
+                </span>
               </div>
 
-              <div class="battle-matchup-item">
+              <div class="battle-time-tab">
                 <span class="battle-tab-time">22:00</span>
-                <span class="rank--platinum">プラチナ</span>
-                <span class="battle-matchup-vs">↔</span>
-                <span class="rank--diamond">ダイヤモンド</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--platinum">プラチナ</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--diamond">ダイヤモンド</span>
+                </span>
               </div>
 
-              <div class="battle-matchup-item">
+              <div class="battle-time-tab">
                 <span class="battle-tab-time">22:30</span>
-                <span class="rank--diamond">ダイヤモンド</span>
-                <span class="battle-matchup-vs">↔</span>
-                <span class="rank--legend">レジェンド</span>
+                <span class="battle-tab-ranks">
+                  <span class="rank-chip rank-chip--diamond">ダイヤモンド</span>
+                  <span class="battle-tab-vs">↔</span>
+                  <span class="rank-chip rank-chip--legend">レジェンド</span>
+                </span>
               </div>
             </div>
           </div>
